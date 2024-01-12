@@ -1,9 +1,9 @@
 package Group9_Go;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Test {
+public class FIMS_09_24 {
     static WebDriver driver;
 
     @Before
@@ -30,7 +30,7 @@ public class Test {
     }
 
     @org.junit.Test
-    public void login() throws InterruptedException {
+    public void printOT() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
         Thread.sleep(1000);
@@ -41,21 +41,25 @@ public class Test {
         WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(15))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
         sideMenu.click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"menu_id_1136\"]")).click();
         Thread.sleep(1500);
-        driver.findElement(By.xpath("//*[@id=\"menu_id_1667\"]")).click();
-        Thread.sleep(1000);
-
-        Assert.assertEquals("User logged in successfully? ", "Overtime Claim / Overtime Claim Application", driver.getTitle().trim());
-
-        driver.quit();
+        //1533 = Portal
+        driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
+        Thread.sleep(1500);
+        //*[@id="menu_id_2315"] = Advance Staff
+        driver.findElement(By.xpath("//*[@id=\"menu_id_2315\"]")).click();
+        Thread.sleep(1500);
+        //*[@id="menu_id_2342"] = Activity Advance Application
+        driver.findElement(By.xpath("//*[@id=\"menu_id_2342\"]")).click();
+        Thread.sleep(1500);
+        //*[@id="menu_id_1200"] = List of Activity Advance
+        driver.findElement(By.xpath("//*[@id=\"menu_id_1200\"]")).click();
+        Thread.sleep(1500);
     }
+
+
 
     @After
     public void afterTest() throws InterruptedException {
-        driver.quit();
+//        driver.quit();
     }
 }
