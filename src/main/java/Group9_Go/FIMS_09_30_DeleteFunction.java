@@ -1,9 +1,9 @@
 package Group9_Go;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class FIMS_09_24 {
+public class FIMS_09_30_DeleteFunction {
     static WebDriver driver;
 
     @Before
@@ -30,7 +30,7 @@ public class FIMS_09_24 {
     }
 
     @org.junit.Test
-    public void printOT() throws InterruptedException {
+    public void deleteFunction() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
         Thread.sleep(1000);
@@ -38,13 +38,13 @@ public class FIMS_09_24 {
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
         Thread.sleep(1000);
-        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(15))
+        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
         sideMenu.click();
-        Thread.sleep(1500);
+        Thread.sleep(3000);
         //1533 = Portal
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
-        Thread.sleep(1500);
+        Thread.sleep(2000);
         //*[@id="menu_id_2315"] = Advance Staff
         driver.findElement(By.xpath("//*[@id=\"menu_id_2315\"]")).click();
         Thread.sleep(1500);
@@ -53,13 +53,25 @@ public class FIMS_09_24 {
         Thread.sleep(1500);
         //*[@id="menu_id_1200"] = List of Activity Advance
         driver.findElement(By.xpath("//*[@id=\"menu_id_1200\"]")).click();
-        Thread.sleep(1500);
+        Thread.sleep(6000);
+        //*[@id="dt_listOfActivityAdvance"]/tbody/tr[1]/td[16]/a[6]/i = delete
+        driver.findElement(By.xpath("//*[@id=\"dt_listOfActivityAdvance\"]/tbody/tr[1]/td[16]/a[6]/i")).click();
+        Thread.sleep(6000);
+        ///html/body/div[18]/div/div/div[3]/button[2] = ok button
+        driver.findElement(By.xpath("/html/body/div[18]/div/div/div[3]/button[2]")).click();
+        Thread.sleep(6000);
+        ///html/body/div[18]/div/div/div[3]/button = second time ok
+        driver.findElement(By.xpath("//html/body/div[18]/div/div/div[3]/button")).click();
+        Thread.sleep(6000);
     }
-
-
 
     @After
     public void afterTest() throws InterruptedException {
-//        driver.quit();
+        String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";
+        String actualTitle = driver.getTitle().trim();
+
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
+        driver.quit();
     }
 }

@@ -59,18 +59,18 @@ public class FIMS_09_22_PrintOT {
         driver.findElement(By.xpath("//*[@id=\"inputArea_btn_report\"]/div/button[2]")).click();
         Thread.sleep(2000);
 
+
+
+    }
+
+    @After
+    public void afterTest() throws InterruptedException {
         String expectedTitle = "Overtime Claim / Overtime Claim Application";
         String actualTitle = driver.getTitle().trim();
 
         Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
         System.out.println("Test Passed!");
-
         driver.quit();
-    }
-
-    @After
-    public void afterTest() throws InterruptedException {
-//        driver.quit();
     }
 
 }
