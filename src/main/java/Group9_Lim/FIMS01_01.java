@@ -57,7 +57,7 @@ public class FIMS01_01 {
     }
 
     @Test
-    public void FIMS01_01_01_searchStoreName() throws InterruptedException {
+    public void FIMS01_01_01_searchStoreNameValid() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -108,8 +108,7 @@ public class FIMS01_01 {
         Thread.sleep(1000);
 
         // Input Invalid Store Name
-        String invalidStoreName = "InvalidStore123";
-        driver.findElement(By.xpath("/html/body/span/span/span[1]/input")).sendKeys(invalidStoreName);
+        driver.findElement(By.xpath("/html/body/span/span/span[1]/input")).sendKeys("InvalidStore123");
         Thread.sleep(1000);
 
         // Check for the presence of "Tiada Data" message
@@ -117,8 +116,8 @@ public class FIMS01_01 {
         System.out.println("Message displayed: " + tiadaDataMessage.getText());
 
         // Assert to verify if "Tiada Data" message is displayed for invalid data
-        Assert.assertTrue("Tiada Data message displayed for invalid data", tiadaDataMessage.isDisplayed());
-        System.out.println("User successfully handled the scenario with invalid data input.");
+        Assert.assertTrue("Tiada Data message displayed for invalid store name data", tiadaDataMessage.isDisplayed());
+        System.out.println("User successfully handled the scenario with invalid store name data input.");
     }
 
 

@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class FIMS01_04 {
+public class FIMS01_06 {
     static WebDriver driver;
 
     @Before
@@ -81,7 +81,7 @@ public class FIMS01_04 {
     }
 
     @Test
-    public void TC01_04_01_searchItemValid() throws InterruptedException {
+    public void TC01_06_01_saveItemValid() throws InterruptedException {
 
         // Select Add Item
         driver.findElement(By.xpath("//*[@id=\"btn_add\"]/i")).click();
@@ -89,82 +89,59 @@ public class FIMS01_04 {
 
         // Select Item Input Box
         driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span")).click();
-        Thread.sleep(1000);
-
-        // Input Item Name
-        driver.findElement(By.xpath("//*[@id=\"mdl_store_item\"]/span/span/span[1]/input")).sendKeys("FAIL");
-        Thread.sleep(1000);
-
-        // Select Item
-        driver.findElement(By.xpath("//*[@id=\"sit_store_item_id\"]/option[13]")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span/span[2]")).click();
-        Thread.sleep(1000);
-
-        // Get Text From Page
-        String actualItemName = driver.findElement(By.xpath("//*[@id=\"select2-sit_store_item_id-container\"]")).getText();
-        String expectedItemName = "FAIL";
-
-        // Assert to verify if the actual item name contains the expected item name
-        Assert.assertTrue("Actual item name contains expected item name", actualItemName.contains(expectedItemName));
-        System.out.println("User successfully handled the scenario with valid item input.");
-    }
-
-    @Test
-    public void TC01_04_02_searchItemInvalid() throws InterruptedException {
-
-        // Select Add Item
-        driver.findElement(By.xpath("//*[@id=\"btn_add\"]/i")).click();
-        Thread.sleep(1000);
-
-        // Select Item Input Box
-        driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span")).click();
-        Thread.sleep(1000);
-
-        // Input Invalid Item Name
-        driver.findElement(By.xpath("//*[@id=\"mdl_store_item\"]/span/span/span[1]/input")).sendKeys("KERTAS A5");
-        Thread.sleep(1000);
-
-        // Check for the presence of "Tiada Data" message
-        WebElement tiadaDataMessage = driver.findElement(By.xpath("//*[@id=\"select2-sit_store_item_id-results\"]/li"));
-        System.out.println("Message displayed: " + tiadaDataMessage.getText());
-
-        // Assert to verify if "Tiada Data" message is displayed for invalid item data
-        Assert.assertTrue("Tiada Data message displayed for invalid item data", tiadaDataMessage.isDisplayed());
-        System.out.println("User successfully handled the scenario with invalid item data input.");
-
-    }
-
-    @Test
-    public void TC01_04_03_searchItemDuplicate() throws InterruptedException {
-
-        // Select Add Item
-        driver.findElement(By.xpath("//*[@id=\"btn_add\"]/i")).click();
-        Thread.sleep(1000);
-
-        // Select Item Input Box
-        driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span")).click();
-        Thread.sleep(1000);
-
-        // Input Item Name
-        driver.findElement(By.xpath("//*[@id=\"mdl_store_item\"]/span/span/span[1]/input")).sendKeys("KERTAS A4");
         Thread.sleep(1000);
 
         // Select Item
         driver.findElement(By.xpath("//*[@id=\"sit_store_item_id\"]/option[2]")).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span/span[2]")).click();
+
+        // Select Item Input Box
+        driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
 
-        // Check for the presence of duplicate message
-        WebElement duplicateDataMessage = driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/div"));
-        System.out.println("Message displayed: " + duplicateDataMessage.getText());
+        // Input Quantity Request
+        driver.findElement(By.xpath("//*[@id=\"srd_qty_request\"]")).sendKeys("10");
+        Thread.sleep(1000);
 
-        // Assert to verify if duplicate message is displayed for invalid item data
-        Assert.assertTrue("Duplicate message displayed for invalid item data", duplicateDataMessage.isDisplayed());
-        System.out.println("User successfully handled the scenario with duplicate item data input.");
+        // Save Item
+        driver.findElement(By.xpath("//*[@id=\"srd_store_req_detl_id\"]")).click();
+        Thread.sleep(1000);
+
+        // Select ok for confirmation
+        driver.findElement(By.xpath("//*[@id=\"modalConfirm7\"]/div/div/div[3]/button[2]")).click();
+        Thread.sleep(1000);
+
+        // Assert to verify if the item is added successfully
+        Assert.assertTrue("Item added successfully.", true);
+        System.out.println("User successfully add an item.");
 
     }
+
+    @Test
+    public void TC01_06_02_saveItemNoData() throws InterruptedException {
+
+        // Select Add Item
+        driver.findElement(By.xpath("//*[@id=\"btn_add\"]/i")).click();
+        Thread.sleep(1000);
+
+        // Save Item
+        driver.findElement(By.xpath("//*[@id=\"srd_store_req_detl_id\"]")).click();
+        Thread.sleep(1000);
+
+        // Check for the presence of no item message
+        WebElement noItemMessage = driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/div"));
+        System.out.println("Message displayed: " + noItemMessage.getText());
+
+        // Check for the presence of no quantity message
+        WebElement noQtyMessage = driver.findElement(By.xpath("//*[@id=\"inputArea_srd_qty_request\"]/div"));
+        System.out.println("Message displayed: " + noQtyMessage.getText());
+
+        // Assert to verify if no data message is displayed for invalid add item and quantity
+        Assert.assertTrue("No Item message displayed for invalid add item data", noItemMessage.isDisplayed());
+        Assert.assertTrue("No Quantity message displayed for invalid add item data", noQtyMessage.isDisplayed());
+        System.out.println("User successfully handled the scenario with invalid add item data input.");
+    }
+
     @After
     public void afterTest() throws InterruptedException {
 

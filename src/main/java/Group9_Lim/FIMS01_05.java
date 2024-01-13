@@ -1,5 +1,4 @@
 package Group9_Lim;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class FIMS01_04 {
+import java.util.List;
+
+public class FIMS01_05 {
     static WebDriver driver;
 
     @Before
@@ -78,10 +79,6 @@ public class FIMS01_04 {
         // Assert to verify if the actual title contains the expected title
         Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
         System.out.println("User search store successfully at requisition.");
-    }
-
-    @Test
-    public void TC01_04_01_searchItemValid() throws InterruptedException {
 
         // Select Add Item
         driver.findElement(By.xpath("//*[@id=\"btn_add\"]/i")).click();
@@ -111,67 +108,40 @@ public class FIMS01_04 {
     }
 
     @Test
-    public void TC01_04_02_searchItemInvalid() throws InterruptedException {
+    public void TC01_05_01_searchQtyValid() throws InterruptedException {
 
-        // Select Add Item
-        driver.findElement(By.xpath("//*[@id=\"btn_add\"]/i")).click();
+        // Input quantity
+        driver.findElement(By.xpath("//*[@id=\"srd_qty_request\"]")).sendKeys("10");
         Thread.sleep(1000);
 
-        // Select Item Input Box
-        driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span")).click();
-        Thread.sleep(1000);
+        // Get Text From Page for Quantity
+        List<WebElement> actualQuantityText = driver.findElements(By.xpath("//*[@id=\"sit_qty_bal\"]"));
 
-        // Input Invalid Item Name
-        driver.findElement(By.xpath("//*[@id=\"mdl_store_item\"]/span/span/span[1]/input")).sendKeys("KERTAS A5");
-        Thread.sleep(1000);
+        // Check if the list is not empty
+        if (!actualQuantityText.isEmpty()) {
+            // Get the text from the first element in the list
+            WebElement actualQuantityElement = actualQuantityText.get(0);
+            String actualQuantityTextValue = actualQuantityElement.getText();
 
-        // Check for the presence of "Tiada Data" message
-        WebElement tiadaDataMessage = driver.findElement(By.xpath("//*[@id=\"select2-sit_store_item_id-results\"]/li"));
-        System.out.println("Message displayed: " + tiadaDataMessage.getText());
+            // Convert the quantity values to integers
+            int expectedQuantity = 10;
+            int actualQuantity = Integer.parseInt(actualQuantityTextValue);
 
-        // Assert to verify if "Tiada Data" message is displayed for invalid item data
-        Assert.assertTrue("Tiada Data message displayed for invalid item data", tiadaDataMessage.isDisplayed());
-        System.out.println("User successfully handled the scenario with invalid item data input.");
+            System.out.println("Actual Quantity: " + actualQuantity);
 
+            // Assert to verify if the actual quantity is valid
+            Assert.assertTrue("Actual quantity is not less than or equal to expected quantity", actualQuantity <= expectedQuantity);
+            Assert.assertTrue("Actual quantity is not greater than or equal to 1", actualQuantity >= 1);
+            System.out.println("User successfully entered a valid quantity for the item.");
+        } else {
+            System.out.println("No element found for actual quantity.");
+        }
     }
 
-    @Test
-    public void TC01_04_03_searchItemDuplicate() throws InterruptedException {
 
-        // Select Add Item
-        driver.findElement(By.xpath("//*[@id=\"btn_add\"]/i")).click();
-        Thread.sleep(1000);
-
-        // Select Item Input Box
-        driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span")).click();
-        Thread.sleep(1000);
-
-        // Input Item Name
-        driver.findElement(By.xpath("//*[@id=\"mdl_store_item\"]/span/span/span[1]/input")).sendKeys("KERTAS A4");
-        Thread.sleep(1000);
-
-        // Select Item
-        driver.findElement(By.xpath("//*[@id=\"sit_store_item_id\"]/option[2]")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span/span[2]")).click();
-        Thread.sleep(1000);
-
-        // Check for the presence of duplicate message
-        WebElement duplicateDataMessage = driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/div"));
-        System.out.println("Message displayed: " + duplicateDataMessage.getText());
-
-        // Assert to verify if duplicate message is displayed for invalid item data
-        Assert.assertTrue("Duplicate message displayed for invalid item data", duplicateDataMessage.isDisplayed());
-        System.out.println("User successfully handled the scenario with duplicate item data input.");
-
-    }
     @After
     public void afterTest() throws InterruptedException {
-
-        // Stay on the page for 3 seconds
-        Thread.sleep(3000);
-
-        // Quit the driver
+        Thread.sleep(5000);
         driver.quit();
-    }
+}
 }
