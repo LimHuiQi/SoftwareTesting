@@ -3,18 +3,17 @@ package Group9_Go;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
-public class FIMS_09_23_UserManual{
+public class FIMS_09_28_DisplayFilter {
     static WebDriver driver;
 
     @Before
@@ -31,7 +30,7 @@ public class FIMS_09_23_UserManual{
     }
 
     @org.junit.Test
-    public void userManual() throws InterruptedException {
+    public void filterSearch() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
         Thread.sleep(1000);
@@ -43,27 +42,43 @@ public class FIMS_09_23_UserManual{
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
         sideMenu.click();
         Thread.sleep(1500);
+        //1533 = Portal
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
-        driver.findElement(By.xpath("//*[@id=\"menu_id_1136\"]")).click();
+        //*[@id="menu_id_2315"] = Advance Staff
+        driver.findElement(By.xpath("//*[@id=\"menu_id_2315\"]")).click();
         Thread.sleep(1500);
-        driver.findElement(By.xpath("//*[@id=\"menu_id_1667\"]")).click();
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//*[@id=\"user_manual\"]")).click();
+        //*[@id="menu_id_2342"] = Activity Advance Application
+        driver.findElement(By.xpath("//*[@id=\"menu_id_2342\"]")).click();
+        Thread.sleep(1500);
+        //*[@id="menu_id_1200"] = List of Activity Advance
+        driver.findElement(By.xpath("//*[@id=\"menu_id_1200\"]")).click();
+        Thread.sleep(2000);
+        //*[@id="select2-dt_listOfActivityAdvance_length-mv-container"] = display
+        driver.findElement(By.xpath("/html/body/div[4]/form/div/div[1]/div[2]/div[1]/label/span/span[2]/span")).click();
+        Thread.sleep(2000);
+        WebElement dropdownOptions = driver.findElement(By.xpath("/html/body/span/span/span[2]/ul"));
+        List<WebElement> options = dropdownOptions.findElements(By.tagName("li"));
+        if (options.size() >= 2) {
+            // Click on the second option
+            options.get(1).click();
+        } else {
+            System.out.println("Dropdown does not contain enough options.");
+        }
         Thread.sleep(3000);
 
 
     }
 
+
+
     @After
     public void afterTest() throws InterruptedException {
-        String expectedTitle = "Overtime Claim / Overtime Claim Application";
+        String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";
         String actualTitle = driver.getTitle().trim();
 
         Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
         System.out.println("Test Passed!");
-
         driver.quit();
     }
-
 }
