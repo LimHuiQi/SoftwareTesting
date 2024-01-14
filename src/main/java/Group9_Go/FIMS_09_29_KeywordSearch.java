@@ -40,25 +40,28 @@ public class FIMS_09_29_KeywordSearch {
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
         sideMenu.click();
         Thread.sleep(1500);
-        //1533 = Portal
+
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_2315"] = Advance Staff
         driver.findElement(By.xpath("//*[@id=\"menu_id_2315\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_2342"] = Activity Advance Application
         driver.findElement(By.xpath("//*[@id=\"menu_id_2342\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_1200"] = List of Activity Advance
         driver.findElement(By.xpath("//*[@id=\"menu_id_1200\"]")).click();
         Thread.sleep(2000);
-        //*[@id="dt_listOfActivityAdvance_filter"]/label/div/div/input = search textfield
-        driver.findElement(By.xpath("//*[@id='dt_listOfActivityAdvance_filter']/label/div/div/input"))
-                .sendKeys("b");
 
+        // Search for the keyword
+        WebElement searchField = new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='dt_listOfActivityAdvance_filter']/label/div/div/input")));
+        searchField.sendKeys("b");
+
+        // Wait for the search results or any relevant element to be visible
+        WebElement searchResults = new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[4]/form/div/div[1]/div[2]/div[4]/table/tbody/tr[1]/td[16]/a[5]/i")));
+
+        // Assert that the search results are displayed
+        assert(searchResults.isDisplayed());
     }
-
-
 
     @After
     public void afterTest() throws InterruptedException {
