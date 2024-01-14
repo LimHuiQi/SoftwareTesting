@@ -31,42 +31,43 @@ public class FIMS_09_27_DownloadExcel {
 
     @org.junit.Test
     public void printExcel() throws InterruptedException {
-
+        // Login
         driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
         Thread.sleep(1000);
+
+        // Navigate to the required menu items
         WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
         sideMenu.click();
         Thread.sleep(3000);
-        //1533 = Portal
+
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(2000);
-        //*[@id="menu_id_2315"] = Advance Staff
         driver.findElement(By.xpath("//*[@id=\"menu_id_2315\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_2342"] = Activity Advance Application
         driver.findElement(By.xpath("//*[@id=\"menu_id_2342\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_1200"] = List of Activity Advance
         driver.findElement(By.xpath("//*[@id=\"menu_id_1200\"]")).click();
         Thread.sleep(6000);
-        //*[@id="btn_excel"] = Download Excel
+
+        // Assert that the Excel download button is clickable
         WebElement downloadExcelButton = new WebDriverWait(driver, Duration.ofSeconds(15))
                 .until(ExpectedConditions.elementToBeClickable(By.id("btn_excel")));
+        Assert.assertTrue("Excel download button is not clickable!", downloadExcelButton.isEnabled());
+
+        // Click on the Excel download button
         downloadExcelButton.click();
-
-
-
+        Thread.sleep(3000);
     }
+
        @After
     public void afterTest() throws InterruptedException {
            String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";
            String actualTitle = driver.getTitle().trim();
-
            Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
            System.out.println("Test Passed!");
         driver.quit();

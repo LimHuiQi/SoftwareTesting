@@ -42,36 +42,35 @@ public class FIMS_09_28_DisplayFilter {
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
         sideMenu.click();
         Thread.sleep(1500);
-        //1533 = Portal
+
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_2315"] = Advance Staff
         driver.findElement(By.xpath("//*[@id=\"menu_id_2315\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_2342"] = Activity Advance Application
         driver.findElement(By.xpath("//*[@id=\"menu_id_2342\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_1200"] = List of Activity Advance
         driver.findElement(By.xpath("//*[@id=\"menu_id_1200\"]")).click();
         Thread.sleep(2000);
-        //*[@id="select2-dt_listOfActivityAdvance_length-mv-container"] = display
-        driver.findElement(By.xpath("/html/body/div[4]/form/div/div[1]/div[2]/div[1]/label/span/span[2]/span")).click();
-        Thread.sleep(2000);
-        WebElement dropdownOptions = driver.findElement(By.xpath("/html/body/span/span/span[2]/ul"));
+
+        // Select the second option from the dropdown
+        WebElement dropdown = new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[4]/form/div/div[1]/div[2]/div[1]/label/span/span[2]/span")));
+        dropdown.click();
+
+        // Wait for the dropdown options to be visible
+        WebElement dropdownOptions = new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/span/span/span[2]/ul")));
+
+        // Get all options
         List<WebElement> options = dropdownOptions.findElements(By.tagName("li"));
-        if (options.size() >= 2) {
-            // Click on the second option
-            options.get(1).click();
-        } else {
-            System.out.println("Dropdown does not contain enough options.");
-        }
+
+        // Assert that there are at least two options
+        assert(options.size() >= 2);
+
+        // Click on the second option
+        options.get(1).click();
         Thread.sleep(3000);
-
-
     }
-
-
-
     @After
     public void afterTest() throws InterruptedException {
         String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";

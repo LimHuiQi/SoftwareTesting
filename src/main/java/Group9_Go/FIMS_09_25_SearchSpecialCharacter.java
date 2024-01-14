@@ -32,32 +32,36 @@ public class FIMS_09_25_SearchSpecialCharacter {
 
     @org.junit.Test
     public void searchSpecialCharacter() throws InterruptedException {
-
+        // Login
         driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
         Thread.sleep(1000);
+
+        // Wait for the side menu and navigate to the specified menu items
         WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(15))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
         sideMenu.click();
         Thread.sleep(1500);
-        //1533 = Portal
+
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_2315"] = Advance Staff
         driver.findElement(By.xpath("//*[@id=\"menu_id_2315\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_2342"] = Activity Advance Application
         driver.findElement(By.xpath("//*[@id=\"menu_id_2342\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_1200"] = List of Activity Advance
         driver.findElement(By.xpath("//*[@id=\"menu_id_1200\"]")).click();
         Thread.sleep(2000);
-        //*[@id="dt_listOfActivityAdvance_filter"]/label/div/div/input = search textfield
-        driver.findElement(By.xpath("//*[@id='dt_listOfActivityAdvance_filter']/label/div/div/input"))
-                .sendKeys("$$");
+
+        // Enter the search term in the text field
+        WebElement searchField = driver.findElement(By.xpath("//*[@id='dt_listOfActivityAdvance_filter']/label/div/div/input"));
+        searchField.sendKeys("$$");
+
+        // Assert that the search field contains the entered value
+        String enteredValue = searchField.getAttribute("value");
+        Assert.assertEquals("Search term is not entered correctly!", "$$", enteredValue);
     }
 
 
@@ -69,8 +73,6 @@ public class FIMS_09_25_SearchSpecialCharacter {
 
         Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
         System.out.println("Test Passed!");
-
-
         driver.quit();
     }
 }
