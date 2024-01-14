@@ -55,9 +55,6 @@ public class FIMS01_03 {
         Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / New Application", driver.getTitle().trim());
         System.out.println("User logged in successfully.");
 
-    }
-    @Test
-    public void TC01_03_01_clearData() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -86,6 +83,9 @@ public class FIMS01_03 {
         WebElement storeList = driver.findElement(By.xpath("//*[@id=\"dt_store_item_container\"]/div[1]"));
         Assert.assertTrue("Store's list is displayed after search", storeList.isDisplayed());
         System.out.println("User can see the store's list after clicking the search button.");
+    }
+    @Test
+    public void TC01_03_01_clearData() throws InterruptedException {
 
         // Click Clear button
         driver.findElement(By.xpath("//*[@id=\"requisition\"]/div[3]/button[1]")).click();
