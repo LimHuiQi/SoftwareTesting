@@ -15,7 +15,6 @@ import java.time.Duration;
 
 public class FIMS_09_30_DeleteFunction {
     static WebDriver driver;
-
     @Before
     public void beforeTest() throws InterruptedException {
         System.setProperty("webdriver.gecko.driver", "C:\\Users\\User\\Study\\Testing\\geckodriver.exe");
@@ -38,31 +37,36 @@ public class FIMS_09_30_DeleteFunction {
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
         Thread.sleep(1000);
+        // Navigate to the required menu items
         WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
         sideMenu.click();
         Thread.sleep(3000);
-        //1533 = Portal
+
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(2000);
-        //*[@id="menu_id_2315"] = Advance Staff
         driver.findElement(By.xpath("//*[@id=\"menu_id_2315\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_2342"] = Activity Advance Application
         driver.findElement(By.xpath("//*[@id=\"menu_id_2342\"]")).click();
         Thread.sleep(1500);
-        //*[@id="menu_id_1200"] = List of Activity Advance
         driver.findElement(By.xpath("//*[@id=\"menu_id_1200\"]")).click();
         Thread.sleep(6000);
-        //*[@id="dt_listOfActivityAdvance"]/tbody/tr[1]/td[16]/a[6]/i = delete
-        driver.findElement(By.xpath("//*[@id=\"dt_listOfActivityAdvance\"]/tbody/tr[1]/td[16]/a[6]/i")).click();
+
+        // Delete function
+        WebElement deleteButton = new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"dt_listOfActivityAdvance\"]/tbody/tr[1]/td[16]/a[6]/i")));
+        deleteButton.click();
         Thread.sleep(6000);
-        ///html/body/div[18]/div/div/div[3]/button[2] = ok button
-        driver.findElement(By.xpath("/html/body/div[18]/div/div/div[3]/button[2]")).click();
+
+        // Confirm delete
+        WebElement okButton = new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[18]/div/div/div[3]/button[2]")));
+        okButton.click();
         Thread.sleep(6000);
-        ///html/body/div[18]/div/div/div[3]/button = second time ok
-        driver.findElement(By.xpath("//html/body/div[18]/div/div/div[3]/button")).click();
-        Thread.sleep(6000);
+
+        // Assert that the element is deleted successfully
+        WebElement deletedElement = driver.findElement(By.xpath("//*[@id=\"dt_listOfActivityAdvance\"]/tbody/tr[1]"));
+        assert(deletedElement.isDisplayed());
     }
 
     @After
