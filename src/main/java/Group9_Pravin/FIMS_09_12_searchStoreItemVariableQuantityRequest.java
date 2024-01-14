@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class FIMS_09_12_VariableQuantityRequest {
+public class FIMS_09_12_searchStoreItemVariableQuantityRequest {
     static WebDriver driver;
 
     @Before
