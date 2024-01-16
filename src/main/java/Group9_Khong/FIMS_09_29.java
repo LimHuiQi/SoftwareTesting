@@ -1,6 +1,5 @@
 package Group9_Khong;
 
-import com.google.common.collect.Ordering;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,10 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-//Test the sorting function in the List of Application page.(Application No)
-public class FIMS_09_28 {
+//Test the pagination function in the List of Application page.
+public class FIMS_09_29 {
     static WebDriver driver;
 
     @Before
@@ -62,23 +60,17 @@ public class FIMS_09_28 {
     }
 
     @Test
-    public void FIMS_09_28_sortApp() throws InterruptedException {
-        // Click triangle icon in application no cell
-        driver.findElement(By.xpath("//*[@id=\"dt_store_master\"]/thead/tr/th[2]")).click();
+    public void FIMS_09_29_pagination() throws InterruptedException {
+        // Click triangle “next” icon
+        driver.findElement(By.xpath("//*[@id=\"dt_store_master_next\"]/a")).click();
         Thread.sleep(1000);
 
-        // Get all the cells in the second column from the table
-        List<WebElement> applicationCells = driver.findElements(By.xpath("//table[@id='dt_store_master']/tbody/tr/td[2]"));
+        // Check if the list of applications for the next page is displayed
+        List<WebElement> nextPageApp = driver.findElements(By.xpath("//*[@id=\"dt_store_master\"]/tbody/tr[1]/td[1]"));
 
-        // Get the application numbers from the web elements (applicationCells)
-        List<String> applicationNo = applicationCells.stream().map(WebElement::getText).collect(Collectors.toList());
-
-        // Verify if the list is sorted in ascending order
-        boolean isSorted = Ordering.natural().isOrdered(applicationNo);
-
-        // Assertion or logging based on the sorting result
-        Assert.assertTrue("The list of applications is sorted in ascending order", isSorted);
-        System.out.println("The list of applications is sorted in ascending order.");
+        // Assertion to verify that applications are displayed on the next page
+        Assert.assertTrue("The list of applications for the next page is displayed", !nextPageApp.isEmpty());
+        System.out.println("The list of applications for the next page is displayed.");
     }
 
     @After
