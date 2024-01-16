@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
+//Test the search function in the List of Application page for valid data.
 public class FIMS_09_26 {
     static WebDriver driver;
 

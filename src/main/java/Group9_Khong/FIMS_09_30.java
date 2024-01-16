@@ -9,8 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
-//Test the search function in the List of Application page with invalid data.
-public class FIMS_09_27 {
+import java.util.List;
+
+//Test the view function in the List of Application page.
+public class FIMS_09_30 {
     static WebDriver driver;
 
     @Before
@@ -58,22 +60,24 @@ public class FIMS_09_27 {
     }
 
     @Test
-    public void FIMS_09_27_searchAppInvalid() throws InterruptedException {
-        // Click Search Input Field
-        driver.findElement(By.xpath("//*[@id=\"dt_store_master_filter\"]/label")).click();
+    public void FIMS_09_30_viewApp() throws InterruptedException {
+        // Click eye icon
+        driver.findElement(By.xpath("//*[@id=\"dt_store_master\"]/tbody/tr[1]/td[9]/a[1]")).click();
         Thread.sleep(1000);
 
-        // Enter "s187" in the Search input field
-        driver.findElement(By.xpath("/html/body/div[4]/form/div/div[1]/div[2]/div[1]/label/input")).sendKeys("s187");
-        Thread.sleep(1000);
+        // Assertion to check if the data for "Requisition" section is displayed
+        WebElement requisitionElement = driver.findElement(By.xpath("//*[@id=\"requisition\"]/div[2]"));
+        Assert.assertTrue("Requisition data is not displayed", requisitionElement.isDisplayed());
 
-        // Check for the presence of "No records" message
-        WebElement noRecordsMsg = driver.findElement(By.xpath("//*[@id=\"dt_store_master\"]/tbody/tr/td/a"));
-        System.out.println("Message displayed: " + noRecordsMsg.getText());
+        // Assertion to check if the data for "Store's Item" section is displayed
+        WebElement storeItemElement = driver.findElement(By.xpath("//*[@id=\"dt_store_item_container\"]"));
+        Assert.assertTrue("Store's Item data is not displayed", storeItemElement.isDisplayed());
 
-        // Assert to verify if the actual application no contains the expected application no
-        Assert.assertTrue("No records message displayed for invalid application data input", noRecordsMsg.isDisplayed());
-        System.out.println("User successfully handled the scenario with invalid data input.");
+        // Assertion to check if the data for "Application Status" section is displayed
+        WebElement appStatusElement = driver.findElement(By.xpath("//*[@id=\"dt_application_status_container\"]"));
+        Assert.assertTrue("Application Status data is not displayed", appStatusElement.isDisplayed());
+
+        System.out.println("Data for 'Requisition', 'Store's Item', and 'Application Status' is displayed.");
     }
 
     @After
