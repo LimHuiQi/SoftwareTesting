@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TC_01 {
+public class FIMS_09_TC1_Lim {
     static WebDriver driver;
 
     @Before
