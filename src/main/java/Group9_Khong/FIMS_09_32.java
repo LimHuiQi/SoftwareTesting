@@ -9,8 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
-//Test the search function in the List of Application page with invalid data.
-public class FIMS_09_27 {
+import java.util.List;
+
+//Test the search function of the Store’s Item section in the List of Application page with invalid data.
+public class FIMS_09_32 {
     static WebDriver driver;
 
     @Before
@@ -58,17 +60,17 @@ public class FIMS_09_27 {
     }
 
     @Test
-    public void FIMS_09_27_searchAppInvalid() throws InterruptedException {
-        // Click Search Input Field
-        driver.findElement(By.xpath("//*[@id=\"dt_store_master_filter\"]/label")).click();
+    public void FIMS_09_32_searchStoreItemInvalid() throws InterruptedException {
+        // Click eye icon
+        driver.findElement(By.xpath("//*[@id=\"dt_store_master\"]/tbody/tr[1]/td[9]/a[1]")).click();
         Thread.sleep(1000);
 
-        // Enter "^&*" in the Search input field
-        driver.findElement(By.xpath("/html/body/div[4]/form/div/div[1]/div[2]/div[1]/label/input")).sendKeys("^&*");
+        // Enter “^&*” in the search field
+        driver.findElement(By.xpath("/html/body/div[4]/form/div/div[3]/div[2]/div[1]/label/input")).sendKeys("^&*");
         Thread.sleep(1000);
 
         // Check for the presence of "No records" message
-        WebElement noRecordsMsg = driver.findElement(By.xpath("//*[@id=\"dt_store_master\"]/tbody/tr/td/a"));
+        WebElement noRecordsMsg = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td"));
         System.out.println("Message displayed: " + noRecordsMsg.getText());
 
         // Assert to verify if the no records message displayed for invalid data input
