@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-//Test the save function in the Authorized Receipting Form on the Authorized Receipting page.
+//Test the view function in the Authorized Receipting page.
 public class FIMS_09_35 {
     static WebDriver driver;
 
@@ -53,9 +53,9 @@ public class FIMS_09_35 {
         driver.findElement(By.xpath("//*[@id=\"menu_id_1952\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user is navigate to Authorized Receipting page successfully
+        Assert.assertEquals("User navigate to Authorized Receipting page successfully", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
+        System.out.println("UUser navigate to Authorized Receipting page successfully.");
     }
 
     @Test
@@ -64,20 +64,22 @@ public class FIMS_09_35 {
         driver.findElement(By.xpath("//*[@id=\"view\"]/i")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is navigated to the Authorized Receipting Form details page
+        // Post Cond: Assert to verify if the user is navigated to the Authorized Receipting Form details page
         Assert.assertEquals("User successfully navigated to Authorized Receipting Form details page? ", "Account Receivable / Authorized Receipting Form", driver.getTitle().trim());
 
-        // Assert to check if the data for "Details" section is displayed
+        // Post Cond: Assert to check if the data for "Details" section is displayed
         WebElement DetailsElement = driver.findElement(By.xpath("//*[@id=\"cm_details\"]"));
         Assert.assertTrue("Data in Details section is displayed", DetailsElement.isDisplayed());
 
-        // Assert to check if the data for "Authorized Staff" section is displayed
+        // Post Cond: Assert to check if the data for "Authorized Staff" section is displayed
         WebElement authorizedElement = driver.findElement(By.xpath("//*[@id=\"dt_authorized_container\"]"));
         Assert.assertTrue("Data in Authorized Staff section is displayed", authorizedElement.isDisplayed());
 
-        // Assert to check if the data for "Process Flow" section is displayed
+        // Post Cond: Assert to check if the data for "Process Flow" section is displayed
         WebElement processFlowElement = driver.findElement(By.xpath("//*[@id=\"dt_processFlow_container\"]"));
         Assert.assertTrue("Data in Process Flow section is displayed", processFlowElement.isDisplayed());
+
+        System.out.println("Data for 'Details', 'Authorized Staff', and 'Process Flow' is displayed.");
     }
 
     @After
@@ -89,6 +91,4 @@ public class FIMS_09_35 {
         // Quit the driver
         driver.quit();
     }
-
-
 }

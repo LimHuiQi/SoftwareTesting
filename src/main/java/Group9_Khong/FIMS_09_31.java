@@ -54,9 +54,9 @@ public class FIMS_09_31 {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2915\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / List of Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user is navigate to List of Application page successfully
+        Assert.assertEquals("User navigate to List of Application page successfully", "Portal / Stock Application / List of Application", driver.getTitle().trim());
+        System.out.println("User navigate to List of Application page successfully.");
     }
 
     @Test
@@ -69,7 +69,7 @@ public class FIMS_09_31 {
         driver.findElement(By.xpath("/html/body/div[4]/form/div/div[3]/div[2]/div[1]/label/input")).sendKeys("S");
         Thread.sleep(1000);
 
-        // Get the actual item description from the element (table cell)
+        // Check Post Cond: Get the actual item description from the element (table cell)
         WebElement itemCell = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr[1]/td[2]"));
         String actualItem = itemCell.getText();
         String expectedItem = "S";
@@ -88,6 +88,4 @@ public class FIMS_09_31 {
         // Quit the driver
         driver.quit();
     }
-
-
 }

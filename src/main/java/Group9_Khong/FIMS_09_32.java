@@ -54,9 +54,9 @@ public class FIMS_09_32 {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2915\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / List of Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user is navigate to List of Application page successfully
+        Assert.assertEquals("User navigate to List of Application page successfully", "Portal / Stock Application / List of Application", driver.getTitle().trim());
+        System.out.println("User navigate to List of Application page successfully.");
     }
 
     @Test
@@ -69,9 +69,8 @@ public class FIMS_09_32 {
         driver.findElement(By.xpath("/html/body/div[4]/form/div/div[3]/div[2]/div[1]/label/input")).sendKeys("^&*");
         Thread.sleep(1000);
 
-        // Check for the presence of "No records" message
+        // Post Cond: Check for the presence of "No records" message
         WebElement noRecordsMsg = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td"));
-        System.out.println("Message displayed: " + noRecordsMsg.getText());
 
         // Assert to verify if the no records message displayed for invalid data input
         Assert.assertTrue("No records message displayed for invalid application data input", noRecordsMsg.isDisplayed());
@@ -87,6 +86,4 @@ public class FIMS_09_32 {
         // Quit the driver
         driver.quit();
     }
-
-
 }

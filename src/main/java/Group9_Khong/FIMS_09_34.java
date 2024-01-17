@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-//Test the "save and submit" function in the Authorized Receipting page.
+//Test the "save and submit" function in the Authorized Receipting Form on the Authorized Receipting page.
 public class FIMS_09_34 {
     static WebDriver driver;
 
@@ -54,9 +54,9 @@ public class FIMS_09_34 {
         driver.findElement(By.xpath("//*[@id=\"menu_id_1952\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user is navigate to Authorized Receipting page successfully
+        Assert.assertEquals("User navigate to Authorized Receipting page successfully", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
+        System.out.println("UUser navigate to Authorized Receipting page successfully.");
     }
 
     @Test
@@ -116,6 +116,4 @@ public class FIMS_09_34 {
         // Quit the driver
         driver.quit();
     }
-
-
 }

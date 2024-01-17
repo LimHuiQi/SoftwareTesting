@@ -52,9 +52,9 @@ public class FIMS_09_26 {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2915\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / List of Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user is navigate to List of Application page successfully
+        Assert.assertEquals("User navigate to List of Application page successfully", "Portal / Stock Application / List of Application", driver.getTitle().trim());
+        System.out.println("User navigate to List of Application page successfully.");
     }
 
     @Test
@@ -67,14 +67,14 @@ public class FIMS_09_26 {
         driver.findElement(By.xpath("/html/body/div[4]/form/div/div[1]/div[2]/div[1]/label/input")).sendKeys("008");
         Thread.sleep(1000);
 
-        // Get the actual application no from the element (table cell)
+        // To check Post Cond: Get the actual application number from the element (table cell)
         WebElement appNoCell = driver.findElement(By.xpath("//*[@id=\"dt_store_master\"]/tbody/tr/td[2]"));
         String actualAppNo = appNoCell.getText();
         String expectedAppNo = "008";
 
-        // Assert to verify if the actual application no contains the expected application no
+        // Assert to verify if the actual application number contains the expected application number
         Assert.assertTrue("Actual application no contains expected application no", actualAppNo.contains(expectedAppNo));
-        System.out.println("User successfully get the searched application with valid data input.");
+        System.out.println("User successfully see the searched result with valid data input.");
     }
 
     @After
@@ -86,6 +86,4 @@ public class FIMS_09_26 {
         // Quit the driver
         driver.quit();
     }
-
-
 }

@@ -54,9 +54,9 @@ public class FIMS_09_29 {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2915\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / List of Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user is navigate to List of Application page successfully
+        Assert.assertEquals("User navigate to List of Application page successfully", "Portal / Stock Application / List of Application", driver.getTitle().trim());
+        System.out.println("User navigate to List of Application page successfully.");
     }
 
     @Test
@@ -65,7 +65,7 @@ public class FIMS_09_29 {
         driver.findElement(By.xpath("//*[@id=\"dt_store_master_next\"]/a")).click();
         Thread.sleep(1000);
 
-        // Check if the list of applications for the next page is displayed
+        // Check Post Cond: the list of applications for the next page is displayed
         List<WebElement> nextPageApp = driver.findElements(By.xpath("//*[@id=\"dt_store_master\"]/tbody/tr[1]/td[1]"));
 
         // Assertion to verify that applications are displayed on the next page
@@ -82,6 +82,4 @@ public class FIMS_09_29 {
         // Quit the driver
         driver.quit();
     }
-
-
 }

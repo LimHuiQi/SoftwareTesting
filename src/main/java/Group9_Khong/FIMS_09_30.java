@@ -54,9 +54,9 @@ public class FIMS_09_30 {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2915\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / List of Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user is navigate to List of Application page successfully
+        Assert.assertEquals("User navigate to List of Application page successfully", "Portal / Stock Application / List of Application", driver.getTitle().trim());
+        System.out.println("User navigate to List of Application page successfully.");
     }
 
     @Test
@@ -65,15 +65,15 @@ public class FIMS_09_30 {
         driver.findElement(By.xpath("//*[@id=\"dt_store_master\"]/tbody/tr[1]/td[9]/a[1]")).click();
         Thread.sleep(1000);
 
-        // Assertion to check if the data for "Requisition" section is displayed
+        // Post Cond: Assertion to check if the data for "Requisition" section is displayed
         WebElement requisitionElement = driver.findElement(By.xpath("//*[@id=\"requisition\"]/div[2]"));
         Assert.assertTrue("Requisition data is displayed", requisitionElement.isDisplayed());
 
-        // Assertion to check if the data for "Store's Item" section is displayed
+        // Post Cond: Assertion to check if the data for "Store's Item" section is displayed
         WebElement storeItemElement = driver.findElement(By.xpath("//*[@id=\"dt_store_item_container\"]"));
         Assert.assertTrue("Store's Item data is displayed", storeItemElement.isDisplayed());
 
-        // Assertion to check if the data for "Application Status" section is displayed
+        // Post Cond: Assertion to check if the data for "Application Status" section is displayed
         WebElement appStatusElement = driver.findElement(By.xpath("//*[@id=\"dt_application_status_container\"]"));
         Assert.assertTrue("Application Status data is displayed", appStatusElement.isDisplayed());
 
@@ -89,6 +89,4 @@ public class FIMS_09_30 {
         // Quit the driver
         driver.quit();
     }
-
-
 }

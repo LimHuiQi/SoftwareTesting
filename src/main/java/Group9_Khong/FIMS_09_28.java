@@ -56,9 +56,9 @@ public class FIMS_09_28 {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2915\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / List of Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user is navigate to List of Application page successfully
+        Assert.assertEquals("User navigate to List of Application page successfully", "Portal / Stock Application / List of Application", driver.getTitle().trim());
+        System.out.println("User navigate to List of Application page successfully.");
     }
 
     @Test
@@ -67,16 +67,16 @@ public class FIMS_09_28 {
         driver.findElement(By.xpath("//*[@id=\"dt_store_master\"]/thead/tr/th[2]")).click();
         Thread.sleep(1000);
 
-        // Get all the cells in the second column from the table
+        // To Check Post Cond: Get all the cells in the second column (Application No) from the table
         List<WebElement> applicationCells = driver.findElements(By.xpath("//table[@id='dt_store_master']/tbody/tr/td[2]"));
 
-        // Get the application numbers from the web elements (applicationCells)
+        // Get the application numbers from the elements (applicationCells)
         List<String> applicationNo = applicationCells.stream().map(WebElement::getText).collect(Collectors.toList());
 
         // Verify if the list is sorted in ascending order
         boolean isSorted = Ordering.natural().isOrdered(applicationNo);
 
-        // Assertion or logging based on the sorting result
+        // Assertion to check the list of applications is sorted in ascending order
         Assert.assertTrue("The list of applications is sorted in ascending order", isSorted);
         System.out.println("The list of applications is sorted in ascending order.");
     }
@@ -90,6 +90,4 @@ public class FIMS_09_28 {
         // Quit the driver
         driver.quit();
     }
-
-
 }
