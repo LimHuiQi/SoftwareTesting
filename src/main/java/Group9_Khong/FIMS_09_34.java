@@ -9,13 +9,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-//Test the save function in the Authorized Receipting Form on the Authorized Receipting page.
-public class FIMS_09_33 {
+//Test the "save and submit" function in the Authorized Receipting page.
+public class FIMS_09_34 {
     static WebDriver driver;
 
     @Before
@@ -59,7 +60,7 @@ public class FIMS_09_33 {
     }
 
     @Test
-    public void FIMS_09_33_saveReceipt() throws InterruptedException {
+    public void FIMS_09_34_saveSubmitReceipt() throws InterruptedException {
         // Click “+New” button with JavascriptExecutor
         WebElement newButton = driver.findElement(By.xpath("//*[@id=\"dt_listing_container\"]/div[3]/a"));
 
@@ -77,28 +78,27 @@ public class FIMS_09_33 {
         driver.findElement(By.xpath("//*[@id=\"are_purposed_code\"]/option[3]")).click();
         Thread.sleep(1000);
 
-        // Click “Save” button with JavascriptExecutor
-        WebElement saveButton = driver.findElement(By.xpath("//*[@id=\"entrySave\"]"));
+        // Find the "Save & Submit" button
+        WebElement saveSubmitButton = driver.findElement(By.xpath("//*[@id=\"entrySaveSubmit\"]"));
 
-        // Scroll into view before clicking
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", saveButton);
+        // Click the "Save & Submit" button using JavascriptExecutor
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveSubmitButton);
 
-        // Click using JavascriptExecutor
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveButton);
+        // Find the "OK" button in the confirmation message
+        WebElement okButton = driver.findElement(By.xpath("//*[@id=\"modalConfirm7\"]/div/div/div[3]/button[2]"));
 
-        // Click “Save” button
-        saveButton.click();
+        // Click the "OK" button using JavascriptExecutor
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", okButton);
         Thread.sleep(1000);
 
         // Check for the presence of successful message
         WebElement successMsg = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
-        System.out.println("Message displayed: " + successMsg.getText());
 
         // Assert to verify if the successful message displayed
         Assert.assertTrue("successful message displayed", successMsg.isDisplayed());
-        System.out.println("User successfully save the Authorized Receipting Form.");
+        System.out.println("User successfully save and submit the Authorized Receipting Form.");
 
-        // Click “OK” button
+        // Click “OK” button in the alert msg
         driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[3]/button")).click();
         Thread.sleep(1000);
 
