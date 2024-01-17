@@ -67,15 +67,15 @@ public class FIMS_09_30 {
 
         // Assertion to check if the data for "Requisition" section is displayed
         WebElement requisitionElement = driver.findElement(By.xpath("//*[@id=\"requisition\"]/div[2]"));
-        Assert.assertTrue("Requisition data is not displayed", requisitionElement.isDisplayed());
+        Assert.assertTrue("Requisition data is displayed", requisitionElement.isDisplayed());
 
         // Assertion to check if the data for "Store's Item" section is displayed
         WebElement storeItemElement = driver.findElement(By.xpath("//*[@id=\"dt_store_item_container\"]"));
-        Assert.assertTrue("Store's Item data is not displayed", storeItemElement.isDisplayed());
+        Assert.assertTrue("Store's Item data is displayed", storeItemElement.isDisplayed());
 
         // Assertion to check if the data for "Application Status" section is displayed
         WebElement appStatusElement = driver.findElement(By.xpath("//*[@id=\"dt_application_status_container\"]"));
-        Assert.assertTrue("Application Status data is not displayed", appStatusElement.isDisplayed());
+        Assert.assertTrue("Application Status data is displayed", appStatusElement.isDisplayed());
 
         System.out.println("Data for 'Requisition', 'Store's Item', and 'Application Status' is displayed.");
     }
