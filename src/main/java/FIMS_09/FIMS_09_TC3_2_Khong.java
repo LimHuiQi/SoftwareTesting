@@ -9,6 +9,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+import static java.time.Duration.*;
 
 //Test the functions in Authorized Receipting page. (Module 1: Account Receivable)
 public class FIMS_09_TC3_2_Khong {
@@ -51,7 +55,7 @@ public class FIMS_09_TC3_2_Khong {
 
         // Assert to verify if the user is navigate to Authorized Receipting page successfully
         Assert.assertEquals("User navigate to Authorized Receipting page successfully", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
-        System.out.println("UUser navigate to Authorized Receipting page successfully.");
+        System.out.println("User navigate to Authorized Receipting page successfully.");
     }
 
     //Test the save function in the Authorized Receipting Form on the Authorized Receipting page.
@@ -83,12 +87,12 @@ public class FIMS_09_TC3_2_Khong {
         // Click using JavascriptExecutor
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveButton);
 
-        // Click “Save” button
-        saveButton.click();
-        Thread.sleep(1000);
-
         // Check for the presence of successful message
-        WebElement successMsg = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
+        By successMsgLocator = By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Wait for the success message to be visible and then retrieve and print it
+        WebElement successMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(successMsgLocator));
         System.out.println("Message displayed: " + successMsg.getText());
 
         // Assert to verify if the successful message displayed
@@ -138,7 +142,12 @@ public class FIMS_09_TC3_2_Khong {
         Thread.sleep(1000);
 
         // Check for the presence of successful message
-        WebElement successMsg = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
+        By successMsgLocator = By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Wait for the success message to be present and then retrieve and print it
+        WebElement successMsg = wait.until(ExpectedConditions.presenceOfElementLocated(successMsgLocator));
+        System.out.println("Message displayed: " + successMsg.getText());
 
         // Assert to verify if the successful message displayed
         Assert.assertTrue("successful message displayed", successMsg.isDisplayed());
@@ -156,9 +165,13 @@ public class FIMS_09_TC3_2_Khong {
     //Test the view function in the Authorized Receipting page.
     @Test
     public void FIMS_09_35_viewReceipt() throws InterruptedException {
-        // Click eye icon
-        driver.findElement(By.xpath("//*[@id=\"view\"]/i")).click();
-        Thread.sleep(1000);
+        // Click on the eye icon
+        By eyeIconLocator = By.xpath("//*[@id=\"view\"]/i");
+        WebDriverWait wait = new WebDriverWait(driver, ofSeconds(10));
+
+        // Wait for the eye icon to be clickable and then click it
+        WebElement eyeIcon = wait.until(ExpectedConditions.elementToBeClickable(eyeIconLocator));
+        eyeIcon.click();
 
         // Post Cond: Assert to verify if the user is navigated to the Authorized Receipting Form details page
         Assert.assertEquals("User successfully navigated to Authorized Receipting Form details page? ", "Account Receivable / Authorized Receipting Form", driver.getTitle().trim());
