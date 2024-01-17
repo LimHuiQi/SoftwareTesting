@@ -30,10 +30,6 @@ public class FIMS_09_TC4_Go {
         String url = driver.getCurrentUrl();
         System.out.println("Title: " + title);
         System.out.println("URL " + url);
-    }
-
-    @Test
-    public void FIMS_09_21() throws InterruptedException {
         driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
@@ -46,7 +42,10 @@ public class FIMS_09_TC4_Go {
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
         sideMenu.click();
         Thread.sleep(3000);
+    }
 
+    @Test
+    public void FIMS_09_21() throws InterruptedException {
         // Navigate to the specified menu items
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
@@ -95,19 +94,7 @@ public class FIMS_09_TC4_Go {
 
     @Test
     public void FIMS_09_22() throws InterruptedException {
-        driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
-        Thread.sleep(1000);
 
-
-        // Wait for the side menu and click
-        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
-        sideMenu.click();
-        Thread.sleep(3000);
 
         // Navigate to the specified menu items
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
@@ -152,16 +139,7 @@ public class FIMS_09_TC4_Go {
 
     @Test
     public void FIMS_09_23() throws InterruptedException {
-        driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
-        Thread.sleep(1000);
-        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
-        sideMenu.click();
-        Thread.sleep(3000);
+
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[@id=\"menu_id_1136\"]")).click();
@@ -185,18 +163,7 @@ public class FIMS_09_TC4_Go {
     }
     @Test
     public void FIMS_09_24() throws InterruptedException {
-        driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
-        Thread.sleep(1000);
 
-        // Wait for the side menu and navigate to the specified menu items
-        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
-        sideMenu.click();
-        Thread.sleep(3000);
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
@@ -237,18 +204,7 @@ public class FIMS_09_TC4_Go {
     }
     @Test
     public void FIMS_09_25() throws InterruptedException {
-        driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
-        Thread.sleep(1000);
 
-        // Wait for the side menu and navigate to the specified menu items
-        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
-        sideMenu.click();
-        Thread.sleep(3000);
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
@@ -271,18 +227,7 @@ public class FIMS_09_TC4_Go {
     @Test
     public void FIMS_09_26() throws InterruptedException {
         // Login
-        driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
-        Thread.sleep(1000);
 
-        // Wait for the side menu and navigate to the specified menu items
-        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
-        sideMenu.click();
-        Thread.sleep(3000);
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
@@ -321,19 +266,7 @@ public class FIMS_09_TC4_Go {
     }
     @Test
     public void FIMS_09_27() throws InterruptedException {
-        // Login
-        driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
-        Thread.sleep(1000);
 
-        // Navigate to the required menu items
-        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
-        sideMenu.click();
-        Thread.sleep(3000);
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(2000);
@@ -356,17 +289,6 @@ public class FIMS_09_TC4_Go {
 
     @Test
     public void FIMS_09_28() throws InterruptedException {
-
-        driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
-        Thread.sleep(1000);
-        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
-        sideMenu.click();
-        Thread.sleep(3000);
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(2000);
@@ -400,17 +322,6 @@ public class FIMS_09_TC4_Go {
     @Test
     public void FIMS_09_29() throws InterruptedException {
 
-        driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
-        Thread.sleep(1000);
-        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
-        sideMenu.click();
-        Thread.sleep(3000);
-
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
         driver.findElement(By.xpath("//*[@id=\"menu_id_2315\"]")).click();
@@ -434,18 +345,6 @@ public class FIMS_09_TC4_Go {
     }
     @Test
     public void FIMS_09_30() throws InterruptedException {
-
-        driver.findElement(By.xpath("//*[@id=\"userID\"]")).sendKeys("ENTRY4");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"userPassword\"]")).sendKeys("qwertyuiop");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"login\"]")).click();
-        Thread.sleep(1000);
-        // Navigate to the required menu items
-        WebElement sideMenu = new WebDriverWait(driver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"sideMenuLeft\"]/div[2]")));
-        sideMenu.click();
-        Thread.sleep(3000);
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(3000);
@@ -475,12 +374,6 @@ public class FIMS_09_TC4_Go {
 
     @After
     public void afterTest() throws InterruptedException {
-//        // Common teardown code
-//        String expectedTitle = "";
-//        String actualTitle = driver.getTitle().trim();
-//
-//        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
-//        System.out.println("Test Passed!");
         driver.quit();
     }
 }
