@@ -6,9 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class FIMS_09_11_searchStoreItemVariableItem {
+public class FIMS_09_21_editExceedQuantity {
     static WebDriver driver;
 
     @Before
@@ -52,7 +53,7 @@ public class FIMS_09_11_searchStoreItemVariableItem {
     }
 
     @Test
-    public void searchStoreItemVariableItem() throws InterruptedException {
+    public void editExceedQuantity() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -63,23 +64,40 @@ public class FIMS_09_11_searchStoreItemVariableItem {
 
         // Select Store
         driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-results\"]/li/table/tbody/tr/td[3]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
 
         // Select Search button
         driver.findElement(By.xpath("//*[@id=\"searchbtn\"]")).click();
+        Thread.sleep(3000);
+
+        // Select Edit button
+        driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[5]/a[1]/i")).click();
+        Thread.sleep(3000);
+
+        // Select Quantity Request textbox
+        driver.findElement(By.xpath("//*[@id=\"srd_qty_request\"]")).click();
         Thread.sleep(1000);
 
-        // Input Search Item (Store's Item)
-        driver.findElement(By.xpath("//*[@id=\"dt_store_item_filter\"]/label/input")).sendKeys("STICKER");
+        // Clear number
+        driver.findElement(By.xpath("//*[@id=\"srd_qty_request\"]")).clear();
         Thread.sleep(1000);
 
-        // Get Text From Page (Store's Item)
-        String actualStoreItem = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[2]")).getText();
-        String expectedStoreItem = "STICKER";
+        // Input Store Name
+        driver.findElement(By.xpath("//*[@id=\"srd_qty_request\"]")).sendKeys("1000");
+        Thread.sleep(1000);
 
-        // Assert to verify if the actual store name contains the expected store name
-        Assert.assertTrue("Actual Store's Item contains expected Store's Item", actualStoreItem.contains(expectedStoreItem));
-        System.out.println("Successfully searched for Item!");
+        // Select Save button
+        driver.findElement(By.xpath("//*[@id=\"srd_store_req_detl_id\"]")).click();
+        Thread.sleep(1000);
+
+        // Check to see if "Max +++" message is displayed
+        WebElement maxNumberMessage = driver.findElement(By.xpath("//*[@id=\"inputArea_srd_qty_request\"]/div"));
+        System.out.println("Invalid message displayed: " + maxNumberMessage.getText());
+
+        // Assert to verify if "Max +++" message is displayed for exceeding available quantity
+        Assert.assertTrue("Max number message is displayed after entering number exceeding Quantity Available of the item in Store's Item", maxNumberMessage.isDisplayed());
+        System.out.println("Successfully confirming the invalid input.");
+
     }
 
 

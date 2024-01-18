@@ -6,9 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class FIMS_09_12_searchStoreItemVariableQuantityRequest {
+public class FIMS_09_18_searchInvalidData {
     static WebDriver driver;
 
     @Before
@@ -52,34 +53,35 @@ public class FIMS_09_12_searchStoreItemVariableQuantityRequest {
     }
 
     @Test
-    public void searchStoreItemVariableQuantityRequest() throws InterruptedException {
+    public void searchInvalidData() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
 
         // Input Store Name
-        driver.findElement(By.xpath("/html/body/span/span/span[1]/input")).sendKeys("BENDAHARI");
+        driver.findElement(By.xpath("/html/body/span/span/span[1]/input")).sendKeys("IT");
         Thread.sleep(1000);
 
         // Select Store
         driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-results\"]/li/table/tbody/tr/td[3]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
 
         // Select Search button
         driver.findElement(By.xpath("//*[@id=\"searchbtn\"]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
 
         // Input Search Item (Store's Item)
-        driver.findElement(By.xpath("//*[@id=\"dt_store_item_filter\"]/label/input")).sendKeys("2");
+        driver.findElement(By.xpath("//*[@id=\"dt_store_item_filter\"]/label/input")).sendKeys("abc");
         Thread.sleep(1000);
 
-        // Get Text From Page (Store's Item)
-        String actualStoreQuantity = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[3]")).getText();
-        String expectedStoreQuantity = "2";
+        // Check to see if "No records" message is displayed
+        WebElement noRecordsMessage = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td/a"));
+        System.out.println("Invalid message displayed: " + noRecordsMessage.getText());
 
-        // Assert to verify if the actual store name contains the expected store name
-        Assert.assertTrue("Actual Quantity Request contains expected Quantity Request", actualStoreQuantity.contains(expectedStoreQuantity));
-        System.out.println("Successfully searched for Item!");
+        // Assert to verify if "No records" message is displayed for invalid data
+        Assert.assertTrue("No records message is displayed after searching invalid data of Store's item", noRecordsMessage.isDisplayed());
+        System.out.println("Successfully confirming the empty table.");
+
     }
 
 
