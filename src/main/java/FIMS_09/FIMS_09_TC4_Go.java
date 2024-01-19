@@ -45,7 +45,7 @@ public class FIMS_09_TC4_Go {
     }
 
     @Test
-    public void FIMS_09_21() throws InterruptedException {
+    public void FIMS_09_21_PrintWO() throws InterruptedException {
         // Navigate to the specified menu items
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
@@ -90,10 +90,17 @@ public class FIMS_09_TC4_Go {
         WebElement reportElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[2]/div[7]/div[2]/div/div[2]")));
 
         Assert.assertTrue("Report is generate fail", reportElement.isDisplayed());
+
+        String expectedTitle = "Senarai Arahan Kerja - Senarai_Arahan_Kerja_202312.pdf";
+        String actualTitle = driver.getTitle().trim();
+
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
     }
 
+
     @Test
-    public void FIMS_09_22() throws InterruptedException {
+    public void FIMS_09_22_PrintOT() throws InterruptedException {
 
 
         // Navigate to the specified menu items
@@ -135,10 +142,16 @@ public class FIMS_09_TC4_Go {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement reportElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[2]/div[7]/div[2]/div[1]/div[4]")));
         Assert.assertTrue("Report is generate fail", reportElement.isDisplayed());
+
+        String expectedTitle = "Tuntutan Elaun Kerja Lebih Masa - Tuntutan_Elaun_Kerja_Lebih_Masa_202312.pdf";
+        String actualTitle = driver.getTitle().trim();
+
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
     }
 
     @Test
-    public void FIMS_09_23() throws InterruptedException {
+    public void FIMS_09_23_UserManual() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(2000);
@@ -160,9 +173,15 @@ public class FIMS_09_TC4_Go {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement reportElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[2]/div[7]/div[2]/div[1]/div[2]")));
         Assert.assertTrue("Report is generate fail", reportElement.isDisplayed());
+
+        String expectedTitle = "Panduan Pengguna - UserManual_FIMS_OvertimeClaim_V1.0.pdf";
+        String actualTitle = driver.getTitle().trim();
+
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
     }
     @Test
-    public void FIMS_09_24() throws InterruptedException {
+    public void FIMS_09_24_DownloadFilter() throws InterruptedException {
 
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
@@ -194,6 +213,12 @@ public class FIMS_09_TC4_Go {
         driver.findElement(By.xpath("//*[@id=\"dt_listOfActivityAdvanceSmartFilter\"]/div/div/div[3]/button[2]")).click();
         Thread.sleep(4000);
 
+        String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";
+        String actualTitle = driver.getTitle().trim();
+
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
+
         // Assert that the Download Excel button is clickable
         WebElement downloadExcelButton = new WebDriverWait(driver, Duration.ofSeconds(15))
                 .until(ExpectedConditions.elementToBeClickable(By.id("btn_excel")));
@@ -201,9 +226,11 @@ public class FIMS_09_TC4_Go {
 
         // Click on the Download Excel button
         downloadExcelButton.click();
+
+
     }
     @Test
-    public void FIMS_09_25() throws InterruptedException {
+    public void FIMS_09_25_SearchSpecialCharacter() throws InterruptedException {
 
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
@@ -222,12 +249,17 @@ public class FIMS_09_TC4_Go {
         // Assert that the search field contains the entered value
         String enteredValue = searchField.getAttribute("value");
         Assert.assertEquals("Search term is not entered correctly!", "$$", enteredValue);
+
+        String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";
+        String actualTitle = driver.getTitle().trim();
+
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
     }
 
     @Test
-    public void FIMS_09_26() throws InterruptedException {
+    public void FIMS_09_26_FilterSearch() throws InterruptedException {
         // Login
-
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
@@ -263,9 +295,14 @@ public class FIMS_09_TC4_Go {
         WebElement dataTable = driver.findElement(By.xpath("//*[@id=\"dt_listOfActivityAdvance\"]"));
         Assert.assertTrue("Table does not contain data!", dataTable.isDisplayed());
 
+        String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";
+        String actualTitle = driver.getTitle().trim();
+
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
     }
     @Test
-    public void FIMS_09_27() throws InterruptedException {
+    public void FIMS_09_27_DownloadExcel() throws InterruptedException {
 
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
@@ -285,10 +322,15 @@ public class FIMS_09_TC4_Go {
         // Click on the Excel download button
         downloadExcelButton.click();
         Thread.sleep(4000);
+
+        String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";
+        String actualTitle = driver.getTitle().trim();
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
     }
 
     @Test
-    public void FIMS_09_28() throws InterruptedException {
+    public void FIMS_09_28_DisplayFilter() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(2000);
@@ -317,10 +359,16 @@ public class FIMS_09_TC4_Go {
         // Click on the second option
         options.get(1).click();
         Thread.sleep(3000);
+
+        String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";
+        String actualTitle = driver.getTitle().trim();
+
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
     }
 
     @Test
-    public void FIMS_09_29() throws InterruptedException {
+    public void FIMS_09_29_KeywordSearch() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
@@ -342,9 +390,15 @@ public class FIMS_09_TC4_Go {
 
         // Assert that the search results are displayed
         assert(searchResults.isDisplayed());
+
+        String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";
+        String actualTitle = driver.getTitle().trim();
+
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
     }
     @Test
-    public void FIMS_09_30() throws InterruptedException {
+    public void FIMS_09_30_DeleteFunction() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(3000);
@@ -370,6 +424,12 @@ public class FIMS_09_TC4_Go {
         // Assert that the element is deleted successfully
         WebElement deletedElement = driver.findElement(By.xpath("//*[@id=\"dt_listOfActivityAdvance\"]/tbody/tr[1]"));
         assert(deletedElement.isDisplayed());
+
+        String expectedTitle = "Portal / Advance Staff / Declaration / List of Activity Advance";
+        String actualTitle = driver.getTitle().trim();
+
+        Assert.assertEquals("Title mismatch!", expectedTitle, actualTitle);
+        System.out.println("Test Passed!");
     }
 
     @After
