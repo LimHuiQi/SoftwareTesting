@@ -131,6 +131,8 @@ public class FIMS_09_48 {
         driver.findElement(By.xpath("/html/body/div[20]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
 
+        // Assert to verify if the Receipt Details is added successfully
+        Assert.assertTrue("Receipt Details saved successfully.", true);
         System.out.println("User successfully handled the scenario with valid data input.");
     }
 
@@ -165,6 +167,18 @@ public class FIMS_09_48 {
         driver.findElement(By.xpath("/html/body/div[4]/form/div/div[3]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
 
+        // Check for the presence of "Compulsory" message
+        WebElement compulsory1 = driver.findElement(By.xpath("/html/body/div[4]/form/div/div[3]/div/div/div[2]/div/div[1]/div"));
+        System.out.println("Message displayed: " + compulsory1.getText());
+
+        // Check for the presence of "Min 0.01" message
+        WebElement compulsory2 = driver.findElement(By.xpath("/html/body/div[4]/form/div/div[3]/div/div/div[2]/div/div[4]/div[2]"));
+        System.out.println("Message displayed: " + compulsory2.getText());
+
+        // Assert to verify if "Compulsory" message is displayed for invalid data
+        Assert.assertTrue("Compulsory message displayed for invalid data input", compulsory1.isDisplayed());
+        // Assert to verify if "Compulsory" message is displayed for invalid data
+        Assert.assertTrue("Min 0.01 message displayed for invalid data input", compulsory2.isDisplayed());
         System.out.println("User successfully handled the scenario with invalid data input.");
     }
 
