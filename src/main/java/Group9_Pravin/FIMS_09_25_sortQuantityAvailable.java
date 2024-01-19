@@ -54,9 +54,9 @@ public class FIMS_09_25_sortQuantityAvailable {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2868\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / New Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user successfully access the correct page
+        Assert.assertEquals("Checking if user at the correct page", "Portal / Stock Application / New Application", driver.getTitle().trim());
+        System.out.println("User properly accessed to the New Application page!");
     }
 
     @Test
@@ -86,7 +86,12 @@ public class FIMS_09_25_sortQuantityAvailable {
         List<WebElement> quantityAvailableCells = driver.findElements(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[4]"));
 
         // Log the list of items before sorting
-        List<String> originalQuantityAvailableOrder = quantityAvailableCells.stream().map(WebElement::getText).toList();
+        List<Integer> originalQuantityAvailableOrder = quantityAvailableCells
+                .stream()
+                .map(WebElement::getText)
+                .map(Integer::parseInt) // Convert to Integer
+                .collect(Collectors.toList());
+
         System.out.println("Original Quantity Available Order: " + originalQuantityAvailableOrder);
 
         // Select Quantity Available column to trigger sorting
@@ -98,7 +103,11 @@ public class FIMS_09_25_sortQuantityAvailable {
 
         // Get the Quantity Available values after sorting
         quantityAvailableCells = driver.findElements(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[4]"));
-        List<String> sortedQuantityAvailableNumber = quantityAvailableCells.stream().map(WebElement::getText).collect(Collectors.toList());
+        List<Integer> sortedQuantityAvailableNumber = quantityAvailableCells
+                .stream()
+                .map(WebElement::getText)
+                .map(Integer::parseInt) // Convert to Integer
+                .collect(Collectors.toList());
 
         // Verify if the Quantity Available list is sorted in ascending order
         boolean isSorted = Ordering.natural().isOrdered(sortedQuantityAvailableNumber);

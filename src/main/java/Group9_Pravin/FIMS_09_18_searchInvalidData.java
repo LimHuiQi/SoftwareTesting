@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -47,9 +48,9 @@ public class FIMS_09_18_searchInvalidData {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2868\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / New Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user successfully access the correct page
+        Assert.assertEquals("Checking if user at the correct page", "Portal / Stock Application / New Application", driver.getTitle().trim());
+        System.out.println("User properly accessed to the New Application page!");
     }
 
     @Test
@@ -75,11 +76,18 @@ public class FIMS_09_18_searchInvalidData {
         Thread.sleep(1000);
 
         // Check to see if "No records" message is displayed
-        WebElement noRecordsMessage = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td/a"));
-        System.out.println("Invalid message displayed: " + noRecordsMessage.getText());
+        WebElement noRecordsMessage = null;
+        try {
+            noRecordsMessage = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td/a[text()='No records']"));
+            System.out.println("Invalid message displayed: " + noRecordsMessage.getText());
+        } catch (NoSuchElementException e) {
+            // Log a custom message indicating the absence of the "No records" message
+            System.out.println("No records message not found: " + e.getMessage());
+        }
 
         // Assert to verify if "No records" message is displayed for invalid data
-        Assert.assertTrue("No records message is displayed after searching invalid data of Store's item", noRecordsMessage.isDisplayed());
+        Assert.assertTrue("No records message did not display after searching invalid data of Store's item",
+                noRecordsMessage != null && noRecordsMessage.isDisplayed());
         System.out.println("Successfully confirming the empty table.");
 
     }

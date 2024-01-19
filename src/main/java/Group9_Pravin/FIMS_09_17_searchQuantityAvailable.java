@@ -46,9 +46,9 @@ public class FIMS_09_17_searchQuantityAvailable {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2868\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / New Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user successfully access the correct page
+        Assert.assertEquals("Checking if user at the correct page", "Portal / Stock Application / New Application", driver.getTitle().trim());
+        System.out.println("User properly accessed to the New Application page!");
     }
 
     @Test
@@ -77,9 +77,9 @@ public class FIMS_09_17_searchQuantityAvailable {
         String actualSearchQuantityAvailable = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[4]")).getText();
         String expectedSearchQuantityAvailable = "29";
 
-        // Assert to verify if the actual quantity available contains the expected quantity available
-        Assert.assertTrue("Actual Quantity Available contains expected Quantity Available", actualSearchQuantityAvailable.contains(expectedSearchQuantityAvailable));
-        System.out.println("Successfully searched for Item!");
+        // Assert to verify if the searched quantity available matches the expected quantity available
+        Assert.assertTrue("The searched Quantity Available do not match with the expected Quantity Available", actualSearchQuantityAvailable.contains(expectedSearchQuantityAvailable));
+        System.out.println("Successfully searched for Quantity Available!");
 
     }
 

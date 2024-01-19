@@ -4,6 +4,7 @@ import com.google.common.collect.Ordering;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -58,9 +59,9 @@ public class FIMS_09_TC2_Pravin {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2868\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / New Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user successfully access the correct page
+        Assert.assertEquals("Checking if user at the correct page", "Portal / Stock Application / New Application", driver.getTitle().trim());
+        System.out.println("User properly accessed to the New Application page!");
     }
 
     @Test
@@ -89,8 +90,8 @@ public class FIMS_09_TC2_Pravin {
         String actualSearchItem = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[2]")).getText();
         String expectedSearchItem = "PISAU";
 
-        // Assert to verify if the actual store item contains the expected store item
-        Assert.assertTrue("Actual Item contains expected Item", actualSearchItem.contains(expectedSearchItem));
+        // Assert to verify if the searched store item matches the expected store item
+        Assert.assertTrue("The searched item do not match with the expected store item", actualSearchItem.contains(expectedSearchItem));
         System.out.println("Successfully searched for Item!");
     }
 
@@ -120,9 +121,9 @@ public class FIMS_09_TC2_Pravin {
         String actualSearchQuantityRequest = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[3]")).getText();
         String expectedSearchQuantityRequest = "13";
 
-        // Assert to verify if the actual quantity request contains the expected quantity request
-        Assert.assertTrue("Actual Quantity Request contains expected Quantity Request", actualSearchQuantityRequest.contains(expectedSearchQuantityRequest));
-        System.out.println("Successfully searched for Item!");
+        // Assert to verify if the searched quantity request matches the expected quantity request
+        Assert.assertTrue("The searched Quantity Request do not match with the expected Quantity Request", actualSearchQuantityRequest.contains(expectedSearchQuantityRequest));
+        System.out.println("Successfully searched for Quantity Request!");
 
     }
 
@@ -152,9 +153,9 @@ public class FIMS_09_TC2_Pravin {
         String actualSearchQuantityAvailable = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[4]")).getText();
         String expectedSearchQuantityAvailable = "29";
 
-        // Assert to verify if the actual quantity available contains the expected quantity available
-        Assert.assertTrue("Actual Quantity Available contains expected Quantity Available", actualSearchQuantityAvailable.contains(expectedSearchQuantityAvailable));
-        System.out.println("Successfully searched for Item!");
+        // Assert to verify if the searched quantity available matches the expected quantity available
+        Assert.assertTrue("The searched Quantity Available do not match with the expected Quantity Available", actualSearchQuantityAvailable.contains(expectedSearchQuantityAvailable));
+        System.out.println("Successfully searched for Quantity Available!");
 
     }
 
@@ -181,11 +182,18 @@ public class FIMS_09_TC2_Pravin {
         Thread.sleep(1000);
 
         // Check to see if "No records" message is displayed
-        WebElement noRecordsMessage = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td/a"));
-        System.out.println("Invalid message displayed: " + noRecordsMessage.getText());
+        WebElement noRecordsMessage = null;
+        try {
+            noRecordsMessage = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td/a[text()='No records']"));
+            System.out.println("Invalid message displayed: " + noRecordsMessage.getText());
+        } catch (NoSuchElementException e) {
+            // Log a custom message indicating the absence of the "No records" message
+            System.out.println("No records message not found: " + e.getMessage());
+        }
 
         // Assert to verify if "No records" message is displayed for invalid data
-        Assert.assertTrue("No records message is displayed after searching invalid data of Store's item", noRecordsMessage.isDisplayed());
+        Assert.assertTrue("No records message did not display after searching invalid data of Store's item",
+                noRecordsMessage != null && noRecordsMessage.isDisplayed());
         System.out.println("Successfully confirming the empty table.");
 
     }
@@ -246,7 +254,7 @@ public class FIMS_09_TC2_Pravin {
         String expectedEditItem = "S00250005 - STICKER TAGGING ASET (50MM X 80MM)";
 
         // Assert to verify if item has been changed
-        Assert.assertTrue("Actual Item contains expected Item", actualEditItem.contains(expectedEditItem));
+        Assert.assertTrue("Edited item do not match with the expected Item", actualEditItem.contains(expectedEditItem));
         System.out.println("Successfully edited the Item!");
 
     }
@@ -306,8 +314,8 @@ public class FIMS_09_TC2_Pravin {
         String actualEditQuantityRequest = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[3]")).getText();
         String expectedEditQuantityRequest = "5";
 
-        // Assert to verify if item has been changed
-        Assert.assertTrue("Actual Quantity Request contains expected Quantity Request", actualEditQuantityRequest.contains(expectedEditQuantityRequest));
+        // Assert to verify if quantity request has been changed
+        Assert.assertTrue("Edited Quantity Request do not match with the expected Quantity Request", actualEditQuantityRequest.contains(expectedEditQuantityRequest));
         System.out.println("Successfully edited the Quantity Request!");
 
     }
@@ -351,13 +359,19 @@ public class FIMS_09_TC2_Pravin {
         Thread.sleep(1000);
 
         // Check to see if "Max +++" message is displayed
-        WebElement maxNumberMessage = driver.findElement(By.xpath("//*[@id=\"inputArea_srd_qty_request\"]/div"));
-        System.out.println("Invalid message displayed: " + maxNumberMessage.getText());
+        WebElement maxNumberMessage = null;
+        try {
+            maxNumberMessage = driver.findElement(By.xpath("//*[@id=\"inputArea_srd_qty_request\"]/div"));
+            System.out.println("Invalid message displayed: " + maxNumberMessage.getText());
+        } catch (NoSuchElementException e) {
+            // Log a custom message indicating absence of the element
+            System.out.println("Element not found: " + e.getMessage());
+        }
 
         // Assert to verify if "Max +++" message is displayed for exceeding available quantity
-        Assert.assertTrue("Max number message is displayed after entering number exceeding Quantity Available of the item in Store's Item", maxNumberMessage.isDisplayed());
+        Assert.assertTrue("Max number message did not display after entering number exceeding Quantity Available of the item in Store's Item",
+                maxNumberMessage != null && maxNumberMessage.isDisplayed());
         System.out.println("Successfully confirming the invalid input.");
-
     }
 
     @Test
@@ -387,13 +401,19 @@ public class FIMS_09_TC2_Pravin {
         Thread.sleep(5000);
 
         // Check to see if the recently added item message is displayed
-        WebElement addedItem = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
-        System.out.println("Message displayed: " + addedItem.getText());
+        WebElement addedItem = null;
+        try {
+            addedItem = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
+            System.out.println("Message displayed: " + addedItem.getText());
+        } catch (NoSuchElementException e) {
+            // Log a custom message indicating intentional absence of the element
+            System.out.println("Element not found: " + e.getMessage());
+        }
 
         // Assert to verify if the item is added successfully
-        Assert.assertTrue("Added item is displayed in the List of Application.", addedItem.isDisplayed());
-        System.out.println("Item successfully has been saved and submitted into database.");
-
+        Assert.assertTrue("Added item message fails to display.",
+                addedItem != null && addedItem.isDisplayed());
+        System.out.println("Item successfully has been saved and submitted into the database.");
     }
 
     @Test
@@ -476,21 +496,30 @@ public class FIMS_09_TC2_Pravin {
         List<WebElement> quantityRequestCells = driver.findElements(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[3]"));
 
         // Log the list of items before sorting
-        List<String> originalQuantityRequestOrder = quantityRequestCells.stream().map(WebElement::getText).toList();
+        List<Integer> originalQuantityRequestOrder = quantityRequestCells
+                .stream()
+                .map(WebElement::getText)
+                .map(Integer::parseInt) // Convert to Integer
+                .collect(Collectors.toList());
+
         System.out.println("Original Quantity Request Order: " + originalQuantityRequestOrder);
 
         // Select Quantity Request column to trigger sorting
-        WebElement quantityRequestColumn = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/thead/tr/th[3]"));
-        quantityRequestColumn.click();
+        WebElement quantityAvailableColumn = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/thead/tr/th[3]"));
+        quantityAvailableColumn.click();
 
         // Wait for the table to be refreshed after sorting
         wait.until(ExpectedConditions.stalenessOf(quantityRequestCells.get(0)));
 
         // Get the Quantity Request values after sorting
         quantityRequestCells = driver.findElements(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[3]"));
-        List<String> sortedQuantityRequestNumber = quantityRequestCells.stream().map(WebElement::getText).collect(Collectors.toList());
+        List<Integer> sortedQuantityRequestNumber = quantityRequestCells
+                .stream()
+                .map(WebElement::getText)
+                .map(Integer::parseInt) // Convert to Integer
+                .collect(Collectors.toList());
 
-        // Verify if the Quantity Request list is sorted in ascending order
+        // Verify if the Quantity Available list is sorted in ascending order
         boolean isSorted = Ordering.natural().isOrdered(sortedQuantityRequestNumber);
 
         // Assertion for the sorting result
@@ -529,7 +558,12 @@ public class FIMS_09_TC2_Pravin {
         List<WebElement> quantityAvailableCells = driver.findElements(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[4]"));
 
         // Log the list of items before sorting
-        List<String> originalQuantityAvailableOrder = quantityAvailableCells.stream().map(WebElement::getText).toList();
+        List<Integer> originalQuantityAvailableOrder = quantityAvailableCells
+                .stream()
+                .map(WebElement::getText)
+                .map(Integer::parseInt) // Convert to Integer
+                .collect(Collectors.toList());
+
         System.out.println("Original Quantity Available Order: " + originalQuantityAvailableOrder);
 
         // Select Quantity Available column to trigger sorting
@@ -541,7 +575,11 @@ public class FIMS_09_TC2_Pravin {
 
         // Get the Quantity Available values after sorting
         quantityAvailableCells = driver.findElements(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[4]"));
-        List<String> sortedQuantityAvailableNumber = quantityAvailableCells.stream().map(WebElement::getText).collect(Collectors.toList());
+        List<Integer> sortedQuantityAvailableNumber = quantityAvailableCells
+                .stream()
+                .map(WebElement::getText)
+                .map(Integer::parseInt) // Convert to Integer
+                .collect(Collectors.toList());
 
         // Verify if the Quantity Available list is sorted in ascending order
         boolean isSorted = Ordering.natural().isOrdered(sortedQuantityAvailableNumber);

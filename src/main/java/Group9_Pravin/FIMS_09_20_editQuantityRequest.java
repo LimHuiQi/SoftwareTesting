@@ -56,9 +56,9 @@ public class FIMS_09_20_editQuantityRequest {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2868\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / New Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user successfully access the correct page
+        Assert.assertEquals("Checking if user at the correct page", "Portal / Stock Application / New Application", driver.getTitle().trim());
+        System.out.println("User properly accessed to the New Application page!");
     }
 
     @Test
@@ -116,8 +116,8 @@ public class FIMS_09_20_editQuantityRequest {
         String actualEditQuantityRequest = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[3]")).getText();
         String expectedEditQuantityRequest = "5";
 
-        // Assert to verify if item has been changed
-        Assert.assertTrue("Actual Quantity Request contains expected Quantity Request", actualEditQuantityRequest.contains(expectedEditQuantityRequest));
+        // Assert to verify if quantity request has been changed
+        Assert.assertTrue("Edited Quantity Request do not match with the expected Quantity Request", actualEditQuantityRequest.contains(expectedEditQuantityRequest));
         System.out.println("Successfully edited the Quantity Request!");
 
     }

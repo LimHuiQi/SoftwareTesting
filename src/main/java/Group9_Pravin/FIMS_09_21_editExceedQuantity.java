@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -47,9 +48,9 @@ public class FIMS_09_21_editExceedQuantity {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2868\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / New Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user successfully access the correct page
+        Assert.assertEquals("Checking if user at the correct page", "Portal / Stock Application / New Application", driver.getTitle().trim());
+        System.out.println("User properly accessed to the New Application page!");
     }
 
     @Test
@@ -91,13 +92,19 @@ public class FIMS_09_21_editExceedQuantity {
         Thread.sleep(1000);
 
         // Check to see if "Max +++" message is displayed
-        WebElement maxNumberMessage = driver.findElement(By.xpath("//*[@id=\"inputArea_srd_qty_request\"]/div"));
-        System.out.println("Invalid message displayed: " + maxNumberMessage.getText());
+        WebElement maxNumberMessage = null;
+        try {
+            maxNumberMessage = driver.findElement(By.xpath("//*[@id=\"inputArea_srd_qty_request\"]/div"));
+            System.out.println("Invalid message displayed: " + maxNumberMessage.getText());
+        } catch (NoSuchElementException e) {
+            // Log a custom message indicating absence of the element
+            System.out.println("Element not found: " + e.getMessage());
+        }
 
         // Assert to verify if "Max +++" message is displayed for exceeding available quantity
-        Assert.assertTrue("Max number message is displayed after entering number exceeding Quantity Available of the item in Store's Item", maxNumberMessage.isDisplayed());
+        Assert.assertTrue("Max number message did not display after entering number exceeding Quantity Available of the item in Store's Item",
+                maxNumberMessage != null && maxNumberMessage.isDisplayed());
         System.out.println("Successfully confirming the invalid input.");
-
     }
 
 

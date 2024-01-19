@@ -55,9 +55,9 @@ public class FIMS_09_19_editItem {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2868\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / New Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user successfully access the correct page
+        Assert.assertEquals("Checking if user at the correct page", "Portal / Stock Application / New Application", driver.getTitle().trim());
+        System.out.println("User properly accessed to the New Application page!");
     }
 
     @Test
@@ -116,7 +116,7 @@ public class FIMS_09_19_editItem {
         String expectedEditItem = "S00250005 - STICKER TAGGING ASET (50MM X 80MM)";
 
         // Assert to verify if item has been changed
-        Assert.assertTrue("Actual Item contains expected Item", actualEditItem.contains(expectedEditItem));
+        Assert.assertTrue("Edited item do not match with the expected Item", actualEditItem.contains(expectedEditItem));
         System.out.println("Successfully edited the Item!");
 
     }

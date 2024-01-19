@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -47,9 +48,9 @@ public class FIMS_09_22_saveWithData {
         driver.findElement(By.xpath("//*[@id=\"menu_id_2868\"]")).click();
         Thread.sleep(1000);
 
-        // Assert to verify if the user is logged in successfully
-        Assert.assertEquals("User logged in successfully? ", "Portal / Stock Application / New Application", driver.getTitle().trim());
-        System.out.println("User logged in successfully.");
+        // Assert to verify if the user successfully access the correct page
+        Assert.assertEquals("Checking if user at the correct page", "Portal / Stock Application / New Application", driver.getTitle().trim());
+        System.out.println("User properly accessed to the New Application page!");
     }
 
     @Test
@@ -79,13 +80,19 @@ public class FIMS_09_22_saveWithData {
         Thread.sleep(5000);
 
         // Check to see if the recently added item message is displayed
-        WebElement addedItem = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
-        System.out.println("Message displayed: " + addedItem.getText());
+        WebElement addedItem = null;
+        try {
+            addedItem = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
+            System.out.println("Message displayed: " + addedItem.getText());
+        } catch (NoSuchElementException e) {
+            // Log a custom message indicating intentional absence of the element
+            System.out.println("Element not found: " + e.getMessage());
+        }
 
         // Assert to verify if the item is added successfully
-        Assert.assertTrue("Added item is displayed in the List of Application.", addedItem.isDisplayed());
-        System.out.println("Item successfully has been saved and submitted into database.");
-
+        Assert.assertTrue("Added item message fails to display.",
+                addedItem != null && addedItem.isDisplayed());
+        System.out.println("Item successfully has been saved and submitted into the database.");
     }
 
 
