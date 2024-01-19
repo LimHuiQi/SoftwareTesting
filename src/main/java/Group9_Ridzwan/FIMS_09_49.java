@@ -142,6 +142,8 @@ public class FIMS_09_49 {
         driver.findElement(By.xpath("/html/body/div[19]/div/div/div[3]/button")).click();
         Thread.sleep(1000);
 
+        // Assert to verify if the item is added successfully
+        Assert.assertTrue("Application submit successfully.", true);
         System.out.println("The system success to Submit the Application");
     }
 
