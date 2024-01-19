@@ -1,10 +1,8 @@
 package FIMS_09;
 
 import com.google.common.collect.Ordering;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class FIMS_09_TC2_Pravin {
     static WebDriver driver;
@@ -64,7 +64,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void searchItem() throws InterruptedException {
+    public void FIMS_09_15_searchItem() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -95,7 +95,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void searchQuantityRequest() throws InterruptedException {
+    public void FIMS_09_16_searchQuantityRequest() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -127,7 +127,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void searchQuantityAvailable() throws InterruptedException {
+    public void FIMS_09_17_searchQuantityAvailable() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -159,7 +159,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void searchInvalidData() throws InterruptedException {
+    public void FIMS_09_18_searchInvalidData() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -191,7 +191,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void editItem() throws InterruptedException {
+    public void FIMS_09_19_editItem() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -252,7 +252,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void editQuantityRequest() throws InterruptedException {
+    public void FIMS_09_20_editQuantityRequest() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -313,7 +313,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void editExceedQuantity() throws InterruptedException {
+    public void FIMS_09_21_editExceedQuantity() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -361,7 +361,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void saveWithData() throws InterruptedException {
+    public void FIMS_09_22_saveWithData() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -397,7 +397,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void sortItem() throws InterruptedException {
+    public void FIMS_09_23_sortItem() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -450,7 +450,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void sortQuantityRequest() throws InterruptedException {
+    public void FIMS_09_24_sortQuantityRequest() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -503,7 +503,7 @@ public class FIMS_09_TC2_Pravin {
     }
 
     @Test
-    public void sortQuantityAvailable() throws InterruptedException {
+    public void FIMS_09_25_sortQuantityAvailable() throws InterruptedException {
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
