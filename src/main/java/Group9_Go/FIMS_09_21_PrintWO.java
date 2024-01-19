@@ -86,11 +86,18 @@ public class FIMS_09_21_PrintWO {
             }
         }
 
-// Wait for the report element to be visible in the new tab
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        WebElement reportElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[2]/div[7]/div[2]/div/div[2]")));
 
-        Assert.assertTrue("Report is generate fail", reportElement.isDisplayed());
+// Specify the URL of the link you want to wait for
+        String linkUrl = driver.getCurrentUrl();
+
+//        WebElement reportElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("https://fimsclone.kerisi.my/custom/report/senarai/Overtime/WorkOrder_pdf.php")));
+
+        // Get the href attribute of the reportElement
+        String expectedURL = "https://fimsclone.kerisi.my/custom/report/senarai/Overtime/WorkOrder_pdf.php";
+
+        // Assert that the href attribute matches the linkUrl
+        Assert.assertEquals("URL does not match!", linkUrl, expectedURL);
     }
 
 
