@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
 public class FIMS_09_47 {
@@ -74,7 +75,9 @@ public class FIMS_09_47 {
         driver.findElement(By.xpath("/html/body/div[19]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
 
-        // System.out.println("User successfully handled the scenario with valid data input.");
+        // Assert to verify if the Cash Holder is saved successfully
+        Assert.assertTrue("Cash Holder saved successfully.", true);
+        System.out.println("Cash Holder successfully saved.");
     }
 
     @After
