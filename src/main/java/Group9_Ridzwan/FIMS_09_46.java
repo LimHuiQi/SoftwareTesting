@@ -1,6 +1,9 @@
 package Group9_Ridzwan;
 
 import org.junit.*;
+import org.junit.After;
+import org.junit.Test;
+import org.junit.Before;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -66,7 +69,12 @@ public class FIMS_09_46 {
         driver.findElement(By.xpath("/html/body/span/span/span[2]")).click();
         Thread.sleep(1000);
 
-        System.out.println("User successfully handled the scenario with valid data input.");
+        String actualCashHolderName = driver.findElement(By.xpath("/html/body/div[4]/form/div/div[2]/div[2]/div[3]/span/span[2]/span/span[1]")).getText();
+        String expectedCashHolderName = "UUMIT";
+
+        // Assert to verify if the actual store name contains the expected store name
+        Assert.assertTrue("Actual Cash Holder name contains expected Cash Holder name", actualCashHolderName.contains(expectedCashHolderName));
+        System.out.println("User successfully handled the scenario with valid Cash Holder name data input.");
     }
 
     @Test
