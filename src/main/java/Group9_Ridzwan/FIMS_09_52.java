@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
 public class FIMS_09_52 {
@@ -63,17 +64,21 @@ public class FIMS_09_52 {
         // View draft Application
         driver.findElement(By.xpath("/html/body/div[4]/form/div/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[9]/a[4]")).click();
         Thread.sleep(1000);
-        System.out.println("test 1");
 
         //click delete button
         driver.findElement(By.xpath("/html/body/div[18]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
-        System.out.println("test 1");
+
+        WebElement deletedMessage = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
+        System.out.println("Message displayed: " + deletedMessage.getText());
+
+        // Assert to verify if the item is deleted successfully
+        Assert.assertTrue("Information was successfully deleted message displayed..", deletedMessage.isDisplayed());
+        System.out.println("User successfully delete an Information.");
 
         //click ok
         driver.findElement(By.xpath("/html/body/div[18]/div/div/div[3]/button")).click();
         Thread.sleep(1000);
-        System.out.println("test 1");
 
     }
 
