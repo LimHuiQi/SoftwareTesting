@@ -56,15 +56,21 @@ public class FIMS_09_52 {
     @Test
     public void FIMS_09_54_deleteApplication() throws InterruptedException {
 
-        // View Application
+        // Input Petty Cash Holder for PTJ
+        driver.findElement(By.xpath("/html/body/div[4]/form/div/div[2]/div[2]/div[1]/label/input")).sendKeys("Draft");
+        Thread.sleep(1000);
+
+        // View draft Application
         driver.findElement(By.xpath("/html/body/div[4]/form/div/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[9]/a[4]")).click();
         Thread.sleep(1000);
         System.out.println("test 1");
 
+        //click delete button
         driver.findElement(By.xpath("/html/body/div[18]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
         System.out.println("test 1");
 
+        //click ok
         driver.findElement(By.xpath("/html/body/div[18]/div/div/div[3]/button")).click();
         Thread.sleep(1000);
         System.out.println("test 1");
