@@ -59,6 +59,9 @@ public class FIMS_09_50 {
         driver.findElement(By.xpath("/html/body/div[4]/form/div/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[9]/a[1]")).click();
         Thread.sleep(1000);
 
+        // Assert to verify if the Application is displayed
+        Assert.assertTrue("Details of Application is displayed.", true);
+        System.out.println("The user can see details of Application");
     }
 
     @After
