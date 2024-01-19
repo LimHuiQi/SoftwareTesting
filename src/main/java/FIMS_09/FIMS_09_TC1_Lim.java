@@ -204,21 +204,21 @@ public class FIMS_09_TC1_Lim {
         // Assert to verify if the actual store name contains the expected store name
         Assert.assertTrue("Actual store name contains expected store name", actualStoreName.contains(expectedStoreName));
         System.out.println("User successfully handled the scenario with valid data input.");
-        Thread.sleep(1500);
+        Thread.sleep(3000);
 
         // Search Store
         driver.findElement(By.xpath("//*[@id=\"searchbtn\"]")).click();
-        Thread.sleep(1500);
+        Thread.sleep(3000);
 
         // Assert to verify if the store's list is displayed after search
         WebElement storeList = driver.findElement(By.xpath("//*[@id=\"dt_store_item_container\"]/div[1]"));
         Assert.assertTrue("Store's list is displayed after search", storeList.isDisplayed());
         System.out.println("User can see the store's list after clicking the search button.");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         // Click Clear button
         driver.findElement(By.xpath("//*[@id=\"requisition\"]/div[3]/button[1]")).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         // Assert to verify if the store's list is cleared after clicking the clear button
         WebElement emptyStoreList = driver.findElement(By.xpath("//*[@id=\"dt_store_item_container\"]/div[1]"));
@@ -585,19 +585,19 @@ public class FIMS_09_TC1_Lim {
 
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Input Store Name
         driver.findElement(By.xpath("/html/body/span/span/span[1]/input")).sendKeys("UUMIT");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         // Select Store
         driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-results\"]/li/table/tbody/tr/td[3]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Search Store
         driver.findElement(By.xpath("//*[@id=\"searchbtn\"]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Get Text From Page
         String actualTitle = driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-container\"]")).getText();
@@ -606,23 +606,23 @@ public class FIMS_09_TC1_Lim {
         // Assert to verify if the actual title contains the expected title
         Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
         System.out.println("User search store successfully at requisition.");
-        Thread.sleep(1000);
+        Thread.sleep(3000);
 
         // Select Add Item
         driver.findElement(By.xpath("//*[@id=\"btn_add\"]/i")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Select Item Input Box
         driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Select Item
         driver.findElement(By.xpath("//*[@id=\"sit_store_item_id\"]/option[31]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Select Item Input Box
         driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Input Quantity Request
         driver.findElement(By.xpath("//*[@id=\"srd_qty_request\"]")).sendKeys("10");
@@ -630,24 +630,24 @@ public class FIMS_09_TC1_Lim {
 
         // Save Item
         driver.findElement(By.xpath("//*[@id=\"srd_store_req_detl_id\"]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Select ok for confirmation
         driver.findElement(By.xpath("//*[@id=\"modalConfirm7\"]/div/div/div[3]/button[2]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Assert to verify if the item is added successfully
         Assert.assertTrue("Item added successfully.", true);
         System.out.println("User successfully add an item.");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Delete Item
         driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr[1]/td[5]/a[2]/i")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Select ok for confirmation
         driver.findElement(By.xpath("//*[@id=\"modalConfirm7\"]/div/div/div[3]/button[2]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // Check for the presence of deleted successfully message
         WebElement deletedMessage = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
@@ -659,7 +659,7 @@ public class FIMS_09_TC1_Lim {
 
         // Select ok for confirmation
         driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[3]/button")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
     }
 
