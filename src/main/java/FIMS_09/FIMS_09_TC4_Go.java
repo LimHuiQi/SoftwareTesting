@@ -85,14 +85,8 @@ public class FIMS_09_TC4_Go {
 
 // Wait for the report element to be visible in the new tab
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        String linkUrl = driver.getCurrentUrl();
-
-
-        // Get the href attribute of the reportElement
-        String expectedURL = "https://fimsclone.kerisi.my/custom/report/senarai/Overtime/WorkOrder_pdf.php";
-
-        // Assert that the href attribute matches the linkUrl
-        Assert.assertEquals("URL does not match!", linkUrl, expectedURL);
+        WebElement reportElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[2]/div[7]/div[2]/div/div[2]")));
+        Assert.assertTrue("Report is generate fail", reportElement.isDisplayed());
 
         String expectedTitle = "Senarai Arahan Kerja - Senarai_Arahan_Kerja_202312.pdf";
         String actualTitle = driver.getTitle().trim();
@@ -135,7 +129,6 @@ public class FIMS_09_TC4_Go {
         Thread.sleep(2000);
         String mainWindowHandle = driver.getWindowHandle();
         Set<String> allWindowHandles = driver.getWindowHandles();
-
         for (String windowHandle : allWindowHandles) {
             if (!windowHandle.equals(mainWindowHandle)) {
                 driver.switchTo().window(windowHandle);
@@ -143,14 +136,8 @@ public class FIMS_09_TC4_Go {
             }
         }
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        String linkUrl = driver.getCurrentUrl();
-
-
-        // Get the href attribute of the reportElement
-        String expectedURL = "https://fimsclone.kerisi.my/custom/report/senarai/Overtime/OvertimeClaim_pdf.php";
-
-        // Assert that the href attribute matches the linkUrl
-        Assert.assertEquals("URL does not match!", linkUrl, expectedURL);
+        WebElement reportElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[2]/div[7]/div[2]/div[1]/div[4]")));
+        Assert.assertTrue("Report is generate fail", reportElement.isDisplayed());
 
         String expectedTitle = "Tuntutan Elaun Kerja Lebih Masa - Tuntutan_Elaun_Kerja_Lebih_Masa_202312.pdf";
         String actualTitle = driver.getTitle().trim();
@@ -179,15 +166,15 @@ public class FIMS_09_TC4_Go {
                 break;
             }
         }
+        for (String windowHandle : allWindowHandles) {
+            if (!windowHandle.equals(mainWindowHandle)) {
+                driver.switchTo().window(windowHandle);
+                break;
+            }
+        }
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        String linkUrl = driver.getCurrentUrl();
-
-
-        // Get the href attribute of the reportElement
-        String expectedURL = "https://fimsclone.kerisi.my/custom/manual/OT/UserManual_FIMS_OvertimeClaim_V1.0.pdf";
-
-        // Assert that the href attribute matches the linkUrl
-        Assert.assertEquals("URL does not match!", linkUrl, expectedURL);
+        WebElement reportElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[2]/div[7]/div[2]/div[1]/div[2]")));
+        Assert.assertTrue("Report is generate fail", reportElement.isDisplayed());
 
         String expectedTitle = "Panduan Pengguna - UserManual_FIMS_OvertimeClaim_V1.0.pdf";
         String actualTitle = driver.getTitle().trim();

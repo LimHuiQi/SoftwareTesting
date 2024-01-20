@@ -10,7 +10,8 @@ import org.junit.runners.Suite.SuiteClasses;
         FIMS_09_TC3_1_Khong.class,
         FIMS_09_TC3_2_Khong.class,
         FIMS_09_TC4_Go.class,
-        //FIMS_09_TC5_Ridzwan.class,
+        FIMS_09_TC5_1_Ridzwan.class,
+        FIMS_09_TC5_2_Ridzwan.class
 })
 public class TestSuite {
 
