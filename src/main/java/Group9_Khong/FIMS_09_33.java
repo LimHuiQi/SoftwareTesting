@@ -9,6 +9,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 //Test the save function in the Authorized Receipting Form on the Authorized Receipting page.
 public class FIMS_09_33 {
@@ -82,12 +86,12 @@ public class FIMS_09_33 {
         // Click using JavascriptExecutor
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveButton);
 
-        // Click “Save” button
-        saveButton.click();
-        Thread.sleep(1000);
-
         // Check for the presence of successful message
-        WebElement successMsg = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
+        By successMsgLocator = By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Wait for the success message to be visible and then retrieve and print it
+        WebElement successMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(successMsgLocator));
         System.out.println("Message displayed: " + successMsg.getText());
 
         // Assert to verify if the successful message displayed

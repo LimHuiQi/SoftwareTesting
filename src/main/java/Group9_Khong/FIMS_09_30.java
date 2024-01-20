@@ -8,8 +8,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+
+import static java.time.Duration.ofSeconds;
 
 //Test the view function in the List of Application page.
 public class FIMS_09_30 {
@@ -61,9 +65,13 @@ public class FIMS_09_30 {
 
     @Test
     public void FIMS_09_30_viewApp() throws InterruptedException {
-        // Click eye icon
-        driver.findElement(By.xpath("//*[@id=\"dt_store_master\"]/tbody/tr[1]/td[9]/a[1]")).click();
-        Thread.sleep(1000);
+        // Click on the eye icon for the first row in the List of Applications
+        By eyeIconLocator = By.xpath("//table[@id='dt_store_master']/tbody/tr[1]/td[9]/a[1]");
+        WebDriverWait wait = new WebDriverWait(driver, ofSeconds(10));
+
+        // Wait for the eye icon to be clickable and then click it
+        WebElement eyeIcon = wait.until(ExpectedConditions.elementToBeClickable(eyeIconLocator));
+        eyeIcon.click();
 
         // Post Cond: Assertion to check if the data for "Requisition" section is displayed
         WebElement requisitionElement = driver.findElement(By.xpath("//*[@id=\"requisition\"]/div[2]"));

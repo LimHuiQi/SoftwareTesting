@@ -92,7 +92,12 @@ public class FIMS_09_34 {
         Thread.sleep(1000);
 
         // Check for the presence of successful message
-        WebElement successMsg = driver.findElement(By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]"));
+        By successMsgLocator = By.xpath("//*[@id=\"modalAlert\"]/div/div/div[2]");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Wait for the success message to be present and then retrieve and print it
+        WebElement successMsg = wait.until(ExpectedConditions.presenceOfElementLocated(successMsgLocator));
+        System.out.println("Message displayed: " + successMsg.getText());
 
         // Assert to verify if the successful message displayed
         Assert.assertTrue("successful message displayed", successMsg.isDisplayed());
