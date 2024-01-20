@@ -1,9 +1,7 @@
 package FIMS_09;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.After;
+import org.junit.*;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +13,7 @@ import java.time.Duration;
 import static java.time.Duration.*;
 
 //Test the functions in Authorized Receipting page. (Module 1: Account Receivable)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FIMS_09_TC3_2_Khong {
     static WebDriver driver;
 

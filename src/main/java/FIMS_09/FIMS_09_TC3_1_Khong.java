@@ -1,10 +1,8 @@
 package FIMS_09;
 
 import com.google.common.collect.Ordering;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.After;
+import org.junit.*;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +14,7 @@ import java.util.stream.Collectors;
 import static java.time.Duration.*;
 
 //Test the functions in List of Application page. (Module 4: Stock Application)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FIMS_09_TC3_1_Khong {
     static WebDriver driver;
 
