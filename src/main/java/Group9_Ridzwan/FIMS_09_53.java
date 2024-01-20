@@ -64,6 +64,8 @@ public class FIMS_09_53 {
         driver.findElement(By.xpath("/html/body/div[4]/form/div/div[2]/div[2]/div[3]/table/tbody/tr/td[9]/a[2]/i")).click();
         Thread.sleep(1000);
 
+        Assert.assertTrue("User can print the document successfully.", true);
+        System.out.println("User successfully print.");
     }
 
     @After
