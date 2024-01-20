@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static java.time.Duration.ofSeconds;
+
 //Test the view function in the Authorized Receipting page.
 public class FIMS_09_35 {
     static WebDriver driver;
@@ -60,9 +62,13 @@ public class FIMS_09_35 {
 
     @Test
     public void FIMS_09_35_viewReceipt() throws InterruptedException {
-        // Click eye icon
-        driver.findElement(By.xpath("//*[@id=\"view\"]/i")).click();
-        Thread.sleep(1000);
+        // Click on the eye icon
+        By eyeIconLocator = By.xpath("//*[@id=\"view\"]/i");
+        WebDriverWait wait = new WebDriverWait(driver, ofSeconds(10));
+
+        // Wait for the eye icon to be clickable and then click it
+        WebElement eyeIcon = wait.until(ExpectedConditions.elementToBeClickable(eyeIconLocator));
+        eyeIcon.click();
 
         // Post Cond: Assert to verify if the user is navigated to the Authorized Receipting Form details page
         Assert.assertEquals("User successfully navigated to Authorized Receipting Form details page? ", "Account Receivable / Authorized Receipting Form", driver.getTitle().trim());
