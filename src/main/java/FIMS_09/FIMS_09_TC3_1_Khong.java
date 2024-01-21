@@ -21,7 +21,7 @@ public class FIMS_09_TC3_1_Khong {
     @Before
     public void beforeTest() throws InterruptedException {
         // Set up WebDriver for Edge browser
-        System.setProperty("webdriver.edge.driver","C:\\Users\\khongxinqi\\STIW3034 Software Testing\\edgedriver_win64\\msedgedriver.exe" );
+        System.setProperty("webdriver.edge.driver","C:\\Users\\khongxinqi\\STIW3034 Software Testing\\edgedriver_win64\\msedgedriver.exe");
         driver = new EdgeDriver();
         driver.manage().window().maximize();
 
