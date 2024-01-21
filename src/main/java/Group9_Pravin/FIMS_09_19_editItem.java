@@ -103,20 +103,20 @@ public class FIMS_09_19_editItem {
         Thread.sleep(3000);
 
         // Wait for table update
-        List<WebElement> rows = wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[@id=\"dt_store_item\"]/tbody"), 1));
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr"), 1));
 
         // Assertion for the presence of the keyword in the table
+        List<WebElement> rows = driver.findElements(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr"));
         int rowCount = rows.size();
-        Assert.assertEquals(1, rowCount);
-        Assert.assertNotEquals("No records", rows.get(0).getText());
-        System.out.println("Edit item success!");
+        Assert.assertEquals("Expected one row in the table after the edit", 1, rowCount);
 
         // Get Text for STICKER 50MM From Page (Store's Item [Item])
-        String actualEditItem = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[2]")).getText();
+        WebElement itemElement = rows.get(0).findElement(By.xpath("./td[2]"));
+        String actualEditItem = itemElement.getText();
         String expectedEditItem = "S00250005 - STICKER TAGGING ASET (50MM X 80MM)";
 
         // Assert to verify if item has been changed
-        Assert.assertTrue("Edited item do not match with the expected Item", actualEditItem.contains(expectedEditItem));
+        Assert.assertEquals("Edited item does not match with the expected Item", expectedEditItem, actualEditItem);
         System.out.println("Successfully edited the Item!");
 
     }
