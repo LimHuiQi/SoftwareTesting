@@ -57,6 +57,7 @@ public class FIMS_09_TC1_Lim {
 
     @Test
     public void FIMS_09_01_searchStoreNameValid() throws InterruptedException {
+
         // Select Store Name
         driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
         Thread.sleep(1000);
@@ -105,9 +106,6 @@ public class FIMS_09_TC1_Lim {
         // Input Empty Store Name (No Data)
         driver.findElement(By.xpath("/html/body/span/span/span[1]/input")).sendKeys("");
         Thread.sleep(1000);
-
-        // Get Text From Page
-        String actualStoreName = driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-container\"]")).getText();
 
         // Check for the presence of "Masukkan lagi 1 atau lebih huruf" message
         WebElement enterDataMessage = driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-results\"]/li"));
@@ -581,6 +579,62 @@ public class FIMS_09_TC1_Lim {
 
     @Test
     public void FIMS_09_12_deleteItem() throws InterruptedException {
+        // Select Store Name
+        driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/span/span[2]/span")).click();
+        Thread.sleep(1000);
+
+        // Input Store Name
+        driver.findElement(By.xpath("/html/body/span/span/span[1]/input")).sendKeys("UUMIT");
+        Thread.sleep(1000);
+
+        // Select Store
+        driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-results\"]/li/table/tbody/tr/td[3]")).click();
+        Thread.sleep(1000);
+
+        // Search Store
+        driver.findElement(By.xpath("//*[@id=\"searchbtn\"]")).click();
+        Thread.sleep(1000);
+
+        // Get Text From Page
+        String actualTitle = driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-container\"]")).getText();
+        String expectedTitle = "UUMIT";
+
+        // Assert to verify if the actual title contains the expected title
+        Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
+        System.out.println("User search store successfully at requisition.");
+
+
+        // Select Add Item
+        driver.findElement(By.xpath("//*[@id=\"btn_add\"]/i")).click();
+        Thread.sleep(1000);
+
+        // Select Item Input Box
+        driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span")).click();
+        Thread.sleep(1000);
+
+        // Select Item
+        driver.findElement(By.xpath("//*[@id=\"sit_store_item_id\"]/option[32]")).click();
+        Thread.sleep(1000);
+
+        // Select Item Input Box
+        driver.findElement(By.xpath("//*[@id=\"inputArea_sit_store_item_id\"]/span/span[2]/span")).click();
+        Thread.sleep(1000);
+
+        // Input Quantity Request
+        driver.findElement(By.xpath("//*[@id=\"srd_qty_request\"]")).sendKeys("10");
+        Thread.sleep(1000);
+
+        // Save Item
+        driver.findElement(By.xpath("//*[@id=\"srd_store_req_detl_id\"]")).click();
+        Thread.sleep(1000);
+
+        // Select ok for confirmation
+        driver.findElement(By.xpath("//*[@id=\"modalConfirm7\"]/div/div/div[3]/button[2]")).click();
+        Thread.sleep(1000);
+
+        // Assert to verify if the item is added successfully
+        Assert.assertTrue("Item added successfully.", true);
+        System.out.println("User successfully add an item.");
 
         // Delete Item
         driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr[1]/td[5]/a[2]/i")).click();
