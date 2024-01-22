@@ -241,20 +241,20 @@ public class FIMS_09_TC2_Pravin {
         Thread.sleep(3000);
 
         // Wait for table update
-        List<WebElement> rows = wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[@id=\"dt_store_item\"]/tbody"), 1));
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr"), 1));
 
         // Assertion for the presence of the keyword in the table
+        List<WebElement> rows = driver.findElements(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr"));
         int rowCount = rows.size();
-        Assert.assertEquals(1, rowCount);
-        Assert.assertNotEquals("No records", rows.get(0).getText());
-        System.out.println("Edit item success!");
+        Assert.assertEquals("Expected one row in the table after the edit", 1, rowCount);
 
         // Get Text for STICKER 50MM From Page (Store's Item [Item])
-        String actualEditItem = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[2]")).getText();
+        WebElement itemElement = rows.get(0).findElement(By.xpath("./td[2]"));
+        String actualEditItem = itemElement.getText();
         String expectedEditItem = "S00250005 - STICKER TAGGING ASET (50MM X 80MM)";
 
         // Assert to verify if item has been changed
-        Assert.assertTrue("Edited item do not match with the expected Item", actualEditItem.contains(expectedEditItem));
+        Assert.assertEquals("Edited item does not match with the expected Item", expectedEditItem, actualEditItem);
         System.out.println("Successfully edited the Item!");
 
     }
@@ -271,7 +271,7 @@ public class FIMS_09_TC2_Pravin {
 
         // Select Store
         driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-results\"]/li/table/tbody/tr/td[3]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(5000);
 
         // Select Search button
         driver.findElement(By.xpath("//*[@id=\"searchbtn\"]")).click();
@@ -301,21 +301,21 @@ public class FIMS_09_TC2_Pravin {
         driver.findElement(By.xpath("//*[@id=\"modalConfirm7\"]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
 
-        // Wait for table update
-        List<WebElement> rows = wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[@id=\"dt_store_item\"]/tbody"), 1));
+        // Wait for the table update using WebDriverWait
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr"), 1));
 
         // Assertion for the presence of the keyword in the table
+        List<WebElement> rows = driver.findElements(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr"));
         int rowCount = rows.size();
-        Assert.assertEquals(1, rowCount);
-        Assert.assertNotEquals("No records", rows.get(0).getText());
-        System.out.println("Edit quantity request success!");
+        Assert.assertEquals("Expected one row in the table after the edit", 1, rowCount);
 
-        // Get Text for 5 Quantity Request From Page (Store's Item [QuantityRequest])
-        String actualEditQuantityRequest = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[3]")).getText();
+        // Get Text for Quantity Request From Page
+        WebElement quantityRequestElement = rows.get(0).findElement(By.xpath("./td[3]"));
+        String actualEditQuantityRequest = quantityRequestElement.getText();
         String expectedEditQuantityRequest = "5";
 
         // Assert to verify if quantity request has been changed
-        Assert.assertTrue("Edited Quantity Request do not match with the expected Quantity Request", actualEditQuantityRequest.contains(expectedEditQuantityRequest));
+        Assert.assertEquals("Edited Quantity Request does not match with the expected Quantity Request", expectedEditQuantityRequest, actualEditQuantityRequest);
         System.out.println("Successfully edited the Quantity Request!");
 
     }
@@ -481,7 +481,7 @@ public class FIMS_09_TC2_Pravin {
 
         // Select Store
         driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-results\"]/li/table/tbody/tr/td[3]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(5000);
 
         // Select Search button
         driver.findElement(By.xpath("//*[@id=\"searchbtn\"]")).click();

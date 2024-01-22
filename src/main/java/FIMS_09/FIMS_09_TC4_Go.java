@@ -43,7 +43,7 @@ public class FIMS_09_TC4_Go {
     }
 
     @Test
-    public void FIMS_09_21_PrintWO() throws InterruptedException {
+    public void FIMS_09_36_PrintWO() throws InterruptedException {
         // Navigate to the specified menu items
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
@@ -97,7 +97,7 @@ public class FIMS_09_TC4_Go {
 
 
     @Test
-    public void FIMS_09_22_PrintOT() throws InterruptedException {
+    public void FIMS_09_37_PrintOT() throws InterruptedException {
 
 
         // Navigate to the specified menu items
@@ -147,7 +147,7 @@ public class FIMS_09_TC4_Go {
     }
 
     @Test
-    public void FIMS_09_23_UserManual() throws InterruptedException {
+    public void FIMS_09_38_UserManual() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(2000);
@@ -183,7 +183,7 @@ public class FIMS_09_TC4_Go {
         System.out.println("Test Passed!");
     }
     @Test
-    public void FIMS_09_24_DownloadFilter() throws InterruptedException {
+    public void FIMS_09_39_DownloadFilter() throws InterruptedException {
 
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
@@ -232,7 +232,7 @@ public class FIMS_09_TC4_Go {
 
     }
     @Test
-    public void FIMS_09_25_SearchSpecialCharacter() throws InterruptedException {
+    public void FIMS_09_40_SearchSpecialCharacter() throws InterruptedException {
 
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
@@ -260,7 +260,7 @@ public class FIMS_09_TC4_Go {
     }
 
     @Test
-    public void FIMS_09_26_FilterSearch() throws InterruptedException {
+    public void FIMS_09_41_FilterSearch() throws InterruptedException {
         // Login
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
@@ -304,7 +304,7 @@ public class FIMS_09_TC4_Go {
         System.out.println("Test Passed!");
     }
     @Test
-    public void FIMS_09_27_DownloadExcel() throws InterruptedException {
+    public void FIMS_09_42_DownloadExcel() throws InterruptedException {
 
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
@@ -332,7 +332,7 @@ public class FIMS_09_TC4_Go {
     }
 
     @Test
-    public void FIMS_09_28_DisplayFilter() throws InterruptedException {
+    public void FIMS_09_43_DisplayFilter() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(2000);
@@ -370,7 +370,7 @@ public class FIMS_09_TC4_Go {
     }
 
     @Test
-    public void FIMS_09_29_KeywordSearch() throws InterruptedException {
+    public void FIMS_09_44_KeywordSearch() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(1500);
@@ -400,7 +400,7 @@ public class FIMS_09_TC4_Go {
         System.out.println("Test Passed!");
     }
     @Test
-    public void FIMS_09_30_DeleteFunction() throws InterruptedException {
+    public void FIMS_09_45_DeleteFunction() throws InterruptedException {
 
         driver.findElement(By.xpath("//*[@id=\"menu_id_1533\"]")).click();
         Thread.sleep(3000);

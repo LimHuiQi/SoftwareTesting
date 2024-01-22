@@ -73,7 +73,7 @@ public class FIMS_09_20_editQuantityRequest {
 
         // Select Store
         driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-results\"]/li/table/tbody/tr/td[3]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(5000);
 
         // Select Search button
         driver.findElement(By.xpath("//*[@id=\"searchbtn\"]")).click();
@@ -103,21 +103,21 @@ public class FIMS_09_20_editQuantityRequest {
         driver.findElement(By.xpath("//*[@id=\"modalConfirm7\"]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
 
-        // Wait for table update
-        List<WebElement> rows = wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[@id=\"dt_store_item\"]/tbody"), 1));
+        // Wait for the table update using WebDriverWait
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr"), 1));
 
         // Assertion for the presence of the keyword in the table
+        List<WebElement> rows = driver.findElements(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr"));
         int rowCount = rows.size();
-        Assert.assertEquals(1, rowCount);
-        Assert.assertNotEquals("No records", rows.get(0).getText());
-        System.out.println("Edit quantity request success!");
+        Assert.assertEquals("Expected one row in the table after the edit", 1, rowCount);
 
-        // Get Text for 5 Quantity Request From Page (Store's Item [QuantityRequest])
-        String actualEditQuantityRequest = driver.findElement(By.xpath("//*[@id=\"dt_store_item\"]/tbody/tr/td[3]")).getText();
+        // Get Text for Quantity Request From Page
+        WebElement quantityRequestElement = rows.get(0).findElement(By.xpath("./td[3]"));
+        String actualEditQuantityRequest = quantityRequestElement.getText();
         String expectedEditQuantityRequest = "5";
 
         // Assert to verify if quantity request has been changed
-        Assert.assertTrue("Edited Quantity Request do not match with the expected Quantity Request", actualEditQuantityRequest.contains(expectedEditQuantityRequest));
+        Assert.assertEquals("Edited Quantity Request does not match with the expected Quantity Request", expectedEditQuantityRequest, actualEditQuantityRequest);
         System.out.println("Successfully edited the Quantity Request!");
 
     }
