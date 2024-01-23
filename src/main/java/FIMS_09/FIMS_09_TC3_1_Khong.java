@@ -58,7 +58,7 @@ public class FIMS_09_TC3_1_Khong {
         Thread.sleep(1000);
 
         // Assert to verify if the user is navigated to List of Application page successfully
-        Assert.assertEquals("User navigate to List of Application page successfully", "Portal / Stock Application / List of Application", driver.getTitle().trim());
+        Assert.assertEquals("User fail to navigate to List of Application page successfully", "Portal / Stock Application / List of Application", driver.getTitle().trim());
         System.out.println("User navigate to List of Application page successfully.");
     }
 
@@ -79,7 +79,7 @@ public class FIMS_09_TC3_1_Khong {
         String expectedAppNo = "008";
 
         // Assert to verify if the actual application number contains the expected application number
-        Assert.assertTrue("Actual application no contains expected application no", actualAppNo.contains(expectedAppNo));
+        Assert.assertTrue("Actual application do not contains expected application no", actualAppNo.contains(expectedAppNo));
         System.out.println("User successfully see the searched result with valid data input.");
     }
 
@@ -119,7 +119,7 @@ public class FIMS_09_TC3_1_Khong {
         boolean isSorted = Ordering.natural().isOrdered(applicationNo);
 
         // Assertion to check the list of applications is sorted in ascending order
-        Assert.assertTrue("The list of applications is sorted in ascending order", isSorted);
+        Assert.assertTrue("The list of applications is not sorted in ascending order", isSorted);
         System.out.println("The list of applications is sorted in ascending order.");
     }
 
@@ -151,15 +151,15 @@ public class FIMS_09_TC3_1_Khong {
 
         // Post Cond: Assertion to check if the data for "Requisition" section is displayed
         WebElement requisitionElement = driver.findElement(By.xpath("//*[@id=\"requisition\"]/div[2]"));
-        Assert.assertTrue("Requisition data is displayed", requisitionElement.isDisplayed());
+        Assert.assertTrue("Requisition data is not displayed", requisitionElement.isDisplayed());
 
         // Post Cond: Assertion to check if the data for "Store's Item" section is displayed
         WebElement storeItemElement = driver.findElement(By.xpath("//*[@id=\"dt_store_item_container\"]"));
-        Assert.assertTrue("Store's Item data is displayed", storeItemElement.isDisplayed());
+        Assert.assertTrue("Store's Item data is not displayed", storeItemElement.isDisplayed());
 
         // Post Cond: Assertion to check if the data for "Application Status" section is displayed
         WebElement appStatusElement = driver.findElement(By.xpath("//*[@id=\"dt_application_status_container\"]"));
-        Assert.assertTrue("Application Status data is displayed", appStatusElement.isDisplayed());
+        Assert.assertTrue("Application Status data is not displayed", appStatusElement.isDisplayed());
 
         System.out.println("Data for 'Requisition', 'Store's Item', and 'Application Status' is displayed.");
     }
@@ -181,7 +181,7 @@ public class FIMS_09_TC3_1_Khong {
         String expectedItem = "S";
 
         // Assert to verify if the actual item description contains the expected item description 'S'
-        Assert.assertTrue("Actual item description contains expected item description", actualItem.contains(expectedItem));
+        Assert.assertTrue("Actual item description do not contains expected item description", actualItem.contains(expectedItem));
         System.out.println("User successfully get the searched store's item with valid data input.");
     }
 

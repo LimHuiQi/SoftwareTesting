@@ -53,7 +53,7 @@ public class FIMS_09_TC3_2_Khong {
         Thread.sleep(1000);
 
         // Assert to verify if the user is navigate to Authorized Receipting page successfully
-        Assert.assertEquals("User navigate to Authorized Receipting page successfully", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
+        Assert.assertEquals("User fail to navigate to Authorized Receipting page", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
         System.out.println("User navigate to Authorized Receipting page successfully.");
     }
 
@@ -95,7 +95,7 @@ public class FIMS_09_TC3_2_Khong {
         System.out.println("Message displayed: " + successMsg.getText());
 
         // Assert to verify if the successful message displayed
-        Assert.assertTrue("successful message displayed", successMsg.isDisplayed());
+        Assert.assertTrue("successful message not displayed", successMsg.isDisplayed());
         System.out.println("User successfully save the Authorized Receipting Form.");
 
         // Click “OK” button
@@ -103,7 +103,7 @@ public class FIMS_09_TC3_2_Khong {
         Thread.sleep(1000);
 
         // Post Cond: Check if user redirected to Authorized Receipting page
-        Assert.assertEquals("User redirected to Authorized Receipting page successfully? ", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
+        Assert.assertEquals("User fail to redirected to Authorized Receipting page successfully? ", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
         System.out.println("User redirected to Authorized Receipting page successfully.");
     }
 
@@ -149,7 +149,7 @@ public class FIMS_09_TC3_2_Khong {
         System.out.println("Message displayed: " + successMsg.getText());
 
         // Assert to verify if the successful message displayed
-        Assert.assertTrue("successful message displayed", successMsg.isDisplayed());
+        Assert.assertTrue("successful message not displayed", successMsg.isDisplayed());
         System.out.println("User successfully save and submit the Authorized Receipting Form.");
 
         // Click “OK” button in the alert msg
@@ -157,7 +157,7 @@ public class FIMS_09_TC3_2_Khong {
         Thread.sleep(1000);
 
         // Post Cond: Check if user redirected to Authorized Receipting page
-        Assert.assertEquals("User redirected to Authorized Receipting page successfully? ", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
+        Assert.assertEquals("User fail to redirected to Authorized Receipting page ", "Account Receivable / Authorized Receipting", driver.getTitle().trim());
         System.out.println("User redirected to Authorized Receipting page successfully.");
     }
 
@@ -185,7 +185,7 @@ public class FIMS_09_TC3_2_Khong {
 
         // Post Cond: Assert to check if the data for "Process Flow" section is displayed
         WebElement processFlowElement = driver.findElement(By.xpath("//*[@id=\"dt_processFlow_container\"]"));
-        Assert.assertTrue("Data in Process Flow section is displayed", processFlowElement.isDisplayed());
+        Assert.assertTrue("Data in Process Flow section is not displayed", processFlowElement.isDisplayed());
 
         System.out.println("Data for 'Details', 'Authorized Staff', and 'Process Flow' is displayed.");
     }
