@@ -75,7 +75,7 @@ public class FIMS_09_TC1_Lim {
         String expectedStoreName = "UUMIT";
 
         // Assert to verify if the actual store name contains the expected store name
-        Assert.assertTrue("Actual store name contains expected store name", actualStoreName.contains(expectedStoreName));
+        Assert.assertTrue("Actual store name does not contains expected store name", actualStoreName.contains(expectedStoreName));
         System.out.println("User successfully handled the scenario with valid data input.");
     }
     @Test
@@ -94,7 +94,7 @@ public class FIMS_09_TC1_Lim {
 
 
         // Assert to verify if "Tiada Data" message is displayed for invalid data
-        Assert.assertTrue("Tiada Data message displayed for invalid store name data", tiadaDataMessage.isDisplayed());
+        Assert.assertTrue("Tiada Data message does not displayed for invalid store name data", tiadaDataMessage.isDisplayed());
         System.out.println("User successfully handled the scenario with invalid store name data input.");
     }
     @Test
@@ -112,7 +112,7 @@ public class FIMS_09_TC1_Lim {
         System.out.println("Message displayed: " + enterDataMessage.getText());
 
         // Assert to verify if "Masukkan lagi 1 atau lebih huruf" message is displayed for no data
-        Assert.assertTrue("Masukkan lagi 1 atau lebih huruf message displayed for no data input", enterDataMessage.isDisplayed());
+        Assert.assertTrue("Masukkan lagi 1 atau lebih huruf message does not displayed for no data input", enterDataMessage.isDisplayed());
         System.out.println("User successfully handled the scenario with no data.");
     }
 
@@ -135,7 +135,7 @@ public class FIMS_09_TC1_Lim {
         String actualStoreName = driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-container\"]")).getText();
 
         // Assert to verify if the actual store name contains the expected store name
-        Assert.assertTrue("Actual store name contains expected store name", actualStoreName.contains(expectedStoreName));
+        Assert.assertTrue("Actual store name does not contains expected store name", actualStoreName.contains(expectedStoreName));
         System.out.println("User successfully handled the scenario with valid data input.");
         Thread.sleep(2000);
 
@@ -145,7 +145,7 @@ public class FIMS_09_TC1_Lim {
 
         // Assert to verify if the store's list is displayed after search
         WebElement storeList = driver.findElement(By.xpath("//*[@id=\"dt_store_item_container\"]/div[1]"));
-        Assert.assertTrue("Store's list is displayed after search", storeList.isDisplayed());
+        Assert.assertTrue("Store's list is not displayed after search", storeList.isDisplayed());
         System.out.println("User can see the store's list after clicking the search button.");
     }
 
@@ -165,7 +165,7 @@ public class FIMS_09_TC1_Lim {
         System.out.println("Message displayed: " + enterDataMessage.getText());
 
         // Assert to verify if "Masukkan lagi 1 atau lebih huruf" message is displayed for no data
-        Assert.assertTrue("Masukkan lagi 1 atau lebih huruf message displayed for no data input", enterDataMessage.isDisplayed());
+        Assert.assertTrue("Masukkan lagi 1 atau lebih huruf message does not displayed for no data input", enterDataMessage.isDisplayed());
         System.out.println("User successfully handled the scenario with no data.");
         Thread.sleep(1000);
 
@@ -175,7 +175,7 @@ public class FIMS_09_TC1_Lim {
 
         // Additional assertion to check that the "Compulsory" message is displayed after searching with no data
         WebElement compulsoryMessage = driver.findElement(By.xpath("//*[@id=\"inputArea_sma_store_code\"]/div"));
-        Assert.assertTrue("Compulsory message displayed after searching with no data", compulsoryMessage.isDisplayed());
+        Assert.assertTrue("Compulsory message does not displayed after searching with no data", compulsoryMessage.isDisplayed());
         System.out.println("Compulsory message displayed after searching with no data.");
     }
 
@@ -200,7 +200,7 @@ public class FIMS_09_TC1_Lim {
         String actualStoreName = driver.findElement(By.xpath("//*[@id=\"select2-sma_store_code-container\"]")).getText();
 
         // Assert to verify if the actual store name contains the expected store name
-        Assert.assertTrue("Actual store name contains expected store name", actualStoreName.contains(expectedStoreName));
+        Assert.assertTrue("Actual store name does not contains expected store name", actualStoreName.contains(expectedStoreName));
         System.out.println("User successfully handled the scenario with valid data input.");
         Thread.sleep(3000);
 
@@ -210,7 +210,7 @@ public class FIMS_09_TC1_Lim {
 
         // Assert to verify if the store's list is displayed after search
         WebElement storeList = driver.findElement(By.xpath("//*[@id=\"dt_store_item_container\"]/div[1]"));
-        Assert.assertTrue("Store's list is displayed after search", storeList.isDisplayed());
+        Assert.assertTrue("Store's list is not displayed after search", storeList.isDisplayed());
         System.out.println("User can see the store's list after clicking the search button.");
         Thread.sleep(3000);
 
@@ -220,7 +220,7 @@ public class FIMS_09_TC1_Lim {
 
         // Assert to verify if the store's list is cleared after clicking the clear button
         WebElement emptyStoreList = driver.findElement(By.xpath("//*[@id=\"dt_store_item_container\"]/div[1]"));
-        Assert.assertFalse("Store's list is cleared after clicking the clear button", emptyStoreList.isDisplayed());
+        Assert.assertFalse("Store's list does not cleared after clicking the clear button", emptyStoreList.isDisplayed());
         System.out.println("User successfully clicked the clear button, and the store's list is cleared.");
     }
 
@@ -249,7 +249,7 @@ public class FIMS_09_TC1_Lim {
         String expectedTitle = "UUMIT";
 
         // Assert to verify if the actual title contains the expected title
-        Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
+        Assert.assertTrue("Actual title does not contains expected title", actualTitle.contains(expectedTitle));
         System.out.println("User search store successfully at requisition.");
         Thread.sleep(1000);
 
@@ -276,7 +276,7 @@ public class FIMS_09_TC1_Lim {
         String expectedItemName = "FAIL";
 
         // Assert to verify if the actual item name contains the expected item name
-        Assert.assertTrue("Actual item name contains expected item name", actualItemName.contains(expectedItemName));
+        Assert.assertTrue("Actual item name does not contains expected item name", actualItemName.contains(expectedItemName));
         System.out.println("User successfully handled the scenario with valid item input.");
     }
 
@@ -305,7 +305,7 @@ public class FIMS_09_TC1_Lim {
         String expectedTitle = "UUMIT";
 
         // Assert to verify if the actual title contains the expected title
-        Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
+        Assert.assertTrue("Actual title does not contains expected title", actualTitle.contains(expectedTitle));
         System.out.println("User search store successfully at requisition.");
         Thread.sleep(1000);
 
@@ -326,7 +326,7 @@ public class FIMS_09_TC1_Lim {
         System.out.println("Message displayed: " + tiadaDataMessage.getText());
 
         // Assert to verify if "Tiada Data" message is displayed for invalid item data
-        Assert.assertTrue("Tiada Data message displayed for invalid item data", tiadaDataMessage.isDisplayed());
+        Assert.assertTrue("Tiada Data message does not displayed for invalid item data", tiadaDataMessage.isDisplayed());
         System.out.println("User successfully handled the scenario with invalid item data input.");
 
     }
@@ -356,7 +356,7 @@ public class FIMS_09_TC1_Lim {
         String expectedTitle = "UUMIT";
 
         // Assert to verify if the actual title contains the expected title
-        Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
+        Assert.assertTrue("Actual title does not contains expected title", actualTitle.contains(expectedTitle));
         System.out.println("User search store successfully at requisition.");
         Thread.sleep(1500);
 
@@ -393,7 +393,7 @@ public class FIMS_09_TC1_Lim {
         Thread.sleep(1000);
 
         // Assert to verify if the item is added successfully
-        Assert.assertTrue("Item added successfully.", true);
+        Assert.assertTrue("Item added failed.", true);
         System.out.println("User successfully add an item.");
         Thread.sleep(3000);
 
@@ -420,7 +420,7 @@ public class FIMS_09_TC1_Lim {
         System.out.println("Message displayed: " + duplicateDataMessage.getText());
 
         // Assert to verify if duplicate message is displayed for invalid item data
-        Assert.assertTrue("Duplicate message displayed for invalid item data", duplicateDataMessage.isDisplayed());
+        Assert.assertTrue("Duplicate message does not displayed for invalid item data", duplicateDataMessage.isDisplayed());
         System.out.println("User successfully handled the scenario with duplicate item data input.");
 
     }
@@ -450,7 +450,7 @@ public class FIMS_09_TC1_Lim {
         String expectedTitle = "UUMIT";
 
         // Assert to verify if the actual title contains the expected title
-        Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
+        Assert.assertTrue("Actual title does not contains expected title", actualTitle.contains(expectedTitle));
         System.out.println("User search store successfully at requisition.");
         Thread.sleep(1000);
 
@@ -477,7 +477,7 @@ public class FIMS_09_TC1_Lim {
         String expectedItemName = "FAIL";
 
         // Assert to verify if the actual item name contains the expected item name
-        Assert.assertTrue("Actual item name contains expected item name", actualItemName.contains(expectedItemName));
+        Assert.assertTrue("Actual item name does not contains expected item name", actualItemName.contains(expectedItemName));
         System.out.println("User successfully handled the scenario with valid item input.");
         Thread.sleep(1000);
 
@@ -528,7 +528,7 @@ public class FIMS_09_TC1_Lim {
         String expectedTitle = "UUMIT";
 
         // Assert to verify if the actual title contains the expected title
-        Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
+        Assert.assertTrue("Actual title does not contains expected title", actualTitle.contains(expectedTitle));
         System.out.println("User search store successfully at requisition.");
         Thread.sleep(1000);
 
@@ -555,7 +555,7 @@ public class FIMS_09_TC1_Lim {
         String expectedItemName = "FAIL";
 
         // Assert to verify if the actual item name contains the expected item name
-        Assert.assertTrue("Actual item name contains expected item name", actualItemName.contains(expectedItemName));
+        Assert.assertTrue("Actual item name does not contains expected item name", actualItemName.contains(expectedItemName));
         System.out.println("User successfully handled the scenario with valid item input.");
         Thread.sleep(1000);
 
@@ -573,7 +573,7 @@ public class FIMS_09_TC1_Lim {
         System.out.println("Message displayed: " + maxQuantityMessage.getText());
 
         // Assert to verify if the system displays the maximum quantity message for invalid item data
-        Assert.assertTrue("System displays the maximum quantity message for invalid item data", maxQuantityMessage.isDisplayed());
+        Assert.assertTrue("System does not displays the maximum quantity message for invalid item data", maxQuantityMessage.isDisplayed());
         System.out.println("User successfully handled the scenario with invalid item data input.");
     }
 
@@ -600,7 +600,7 @@ public class FIMS_09_TC1_Lim {
         String expectedTitle = "UUMIT";
 
         // Assert to verify if the actual title contains the expected title
-        Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
+        Assert.assertTrue("Actual title does not contains expected title", actualTitle.contains(expectedTitle));
         System.out.println("User search store successfully at requisition.");
 
         // Delete Item
@@ -616,7 +616,7 @@ public class FIMS_09_TC1_Lim {
         System.out.println("Message displayed: " + deletedMessage.getText());
 
         // Assert to verify if the item is deleted successfully
-        Assert.assertTrue("Item deleted successfully message displayed.", deletedMessage.isDisplayed());
+        Assert.assertTrue("Item deletion failed.", deletedMessage.isDisplayed());
         System.out.println("User successfully delete an item.");
 
         // Select ok for confirmation
@@ -649,7 +649,7 @@ public class FIMS_09_TC1_Lim {
         String expectedTitle = "UUMIT";
 
         // Assert to verify if the actual title contains the expected title
-        Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
+        Assert.assertTrue("Actual title does not contains expected title", actualTitle.contains(expectedTitle));
         System.out.println("User search store successfully at requisition.");
         Thread.sleep(1500);
 
@@ -684,7 +684,7 @@ public class FIMS_09_TC1_Lim {
         Thread.sleep(1500);
 
         // Assert to verify if the item is added successfully
-        Assert.assertTrue("Item added successfully.", true);
+        Assert.assertTrue("Item added failed.", true);
         System.out.println("User successfully add an item.");
 
     }
@@ -713,7 +713,7 @@ public class FIMS_09_TC1_Lim {
         String expectedTitle = "UUMIT";
 
         // Assert to verify if the actual title contains the expected title
-        Assert.assertTrue("Actual title contains expected title", actualTitle.contains(expectedTitle));
+        Assert.assertTrue("Actual title does not contains expected title", actualTitle.contains(expectedTitle));
         System.out.println("User search store successfully at requisition.");
         Thread.sleep(1000);
 
@@ -734,8 +734,8 @@ public class FIMS_09_TC1_Lim {
         System.out.println("Message displayed: " + noQtyMessage.getText());
 
         // Assert to verify if no data message is displayed for invalid add item and quantity
-        Assert.assertTrue("No Item message displayed for invalid add item data", noItemMessage.isDisplayed());
-        Assert.assertTrue("No Quantity message displayed for invalid add item data", noQtyMessage.isDisplayed());
+        Assert.assertTrue("No Item message does not displayed for invalid add item data", noItemMessage.isDisplayed());
+        Assert.assertTrue("No Quantity message does not displayed for invalid add item data", noQtyMessage.isDisplayed());
         System.out.println("User successfully handled the scenario with invalid add item data input.");
     }
     @After
