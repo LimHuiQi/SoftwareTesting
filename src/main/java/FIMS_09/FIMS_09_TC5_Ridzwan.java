@@ -37,8 +37,9 @@ public class FIMS_09_TC5_Ridzwan {
         driver.findElement(By.xpath("/html/body/div/div[2]/form/input")).click();
         Thread.sleep(1000);
 
-        Assert.assertTrue("User successfully login.", true);
-        System.out.println("User successfully login.");
+        // Assert to verify if the user is logged in successfully
+        Assert.assertEquals("User logged in successfully? ", "Main Dashboard", driver.getTitle().trim());
+        System.out.println("User logged in successfully.");
 
     }
 
@@ -140,13 +141,17 @@ public class FIMS_09_TC5_Ridzwan {
         driver.findElement(By.xpath("/html/body/div[4]/form/div/div[2]/div[2]/div[14]/div/button")).click();
         Thread.sleep(1000);
 
+        // Check for the presence of "Are you sure to process this information?" message
+        WebElement save = driver.findElement(By.xpath("/html/body/div[19]/div/div/div[2]"));
+        System.out.println("Message displayed: " + save.getText());
+
+        // Assert to verify if "Are you sure to process this information?"
+        Assert.assertTrue("Save Successfully", save.isDisplayed());
+        System.out.println("System successfully save valid Cash Holder Name.");
+
         // Click on "Ok" button confirmation
         driver.findElement(By.xpath("/html/body/div[19]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
-
-        // Assert to verify if the Cash Holder is saved successfully
-        Assert.assertTrue("Cash Holder saved successfully.", true);
-        System.out.println("Cash Holder successfully saved.");
     }
 
     @Test
@@ -234,13 +239,17 @@ public class FIMS_09_TC5_Ridzwan {
         driver.findElement(By.xpath("/html/body/div[4]/form/div/div[3]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
 
+        // Check for the presence of "Are you sure to process this information?" message
+        WebElement saveApplication = driver.findElement(By.xpath("/html/body/div[20]/div/div/div[2]"));
+        System.out.println("Message displayed: " + saveApplication.getText());
+
+        // Assert to verify if "Are you sure to process this information?" message is displayed for valid data
+        Assert.assertTrue("Are you sure to process this information?", saveApplication.isDisplayed());
+        System.out.println("System successful save application.");
+
         //click Ok button
         driver.findElement(By.xpath("/html/body/div[20]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
-
-        // Assert to verify if the Receipt Details is added successfully
-        Assert.assertTrue("Receipt Details saved successfully.", true);
-        System.out.println("User successfully handled the scenario with valid data input.");
     }
 
     @Test
@@ -296,8 +305,10 @@ public class FIMS_09_TC5_Ridzwan {
 
         // Assert to verify if "Compulsory" message is displayed for invalid data
         Assert.assertTrue("Compulsory message displayed for invalid data input", compulsory1.isDisplayed());
+
         // Assert to verify if "Compulsory" message is displayed for invalid data
         Assert.assertTrue("Min 0.01 message displayed for invalid data input", compulsory2.isDisplayed());
+
         System.out.println("User successfully handled the scenario with invalid data input.");
     }
 
@@ -398,13 +409,44 @@ public class FIMS_09_TC5_Ridzwan {
         driver.findElement(By.xpath("/html/body/div[19]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
 
+        // Check for the presence of "Information was successfully been processed." message
+        WebElement success = driver.findElement(By.xpath("/html/body/div[19]/div/div/div[2]"));
+        System.out.println("Message displayed: " + success.getText());
+
+        // Assert to verify if "Information was successfully been processed" message is displayed for invalid data
+        Assert.assertTrue("Information was successfully been processed.", success.isDisplayed());
+
         //click Ok button
         driver.findElement(By.xpath("/html/body/div[19]/div/div/div[3]/button")).click();
         Thread.sleep(1000);
+    }
 
-        // Assert to verify if the item is added successfully
-        Assert.assertTrue("Application submit successfully.", true);
-        System.out.println("The system success to Submit the Application");
+    @Test
+    public void FIMS_09_52_viewApplication() throws InterruptedException {
+
+        // Select Side Menu
+        driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]/ul/li[6]/a")).click();
+        Thread.sleep(1000);
+
+        // Select Portal
+        driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]/ul/li[6]/ul/li[5]/a")).click();
+        Thread.sleep(1000);
+
+        // Select List of Petty Cash
+        driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]/ul/li[6]/ul/li[5]/ul/li[2]/a")).click();
+        Thread.sleep(1000);
+
+        // View Application
+        driver.findElement(By.xpath("/html/body/div[4]/form/div/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[9]/a[1]")).click();
+        Thread.sleep(1000);
+
+        // Check for the presence of "List of Receipts"
+        WebElement display = driver.findElement(By.xpath("/html/body/div[4]/form/div/div[4]/div[1]"));
+        System.out.println("Message displayed: " + display.getText());
+
+        // Assert to verify if "Information was successfully been processed" message is displayed for invalid data
+        Assert.assertTrue("Information was been displayed", display.isDisplayed());
+        System.out.println("Information was been displayed");
     }
 
     @Test
@@ -522,30 +564,6 @@ public class FIMS_09_TC5_Ridzwan {
         //click Ok button
         driver.findElement(By.xpath("/html/body/div[20]/div/div/div[3]/button[2]")).click();
         Thread.sleep(1000);
-    }
-
-    @Test
-    public void FIMS_09_52_viewApplication() throws InterruptedException {
-
-        // Select Side Menu
-        driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]/ul/li[6]/a")).click();
-        Thread.sleep(1000);
-
-        // Select Portal
-        driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]/ul/li[6]/ul/li[5]/a")).click();
-        Thread.sleep(1000);
-
-        // Select List of Petty Cash
-        driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]/ul/li[6]/ul/li[5]/ul/li[2]/a")).click();
-        Thread.sleep(1000);
-
-        // View Application
-        driver.findElement(By.xpath("/html/body/div[4]/form/div/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[9]/a[1]")).click();
-        Thread.sleep(1000);
-
-        // Assert to verify if the Application is displayed
-        Assert.assertTrue("Details of Application is displayed.", true);
-        System.out.println("The user can see details of Application");
     }
 
     @Test
