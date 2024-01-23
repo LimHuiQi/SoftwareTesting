@@ -73,7 +73,7 @@ public class FIMS_09_TC5_Ridzwan {
         String actualCashHolderName = driver.findElement(By.xpath("/html/body/div[4]/form/div/div[2]/div[2]/div[3]/span/span[2]/span/span[1]")).getText();
         String expectedCashHolderName = "UUMIT";
 
-        // Assert to verify if the actual store name contains the expected store name
+        // Assert to verify if the actual petty name contains the expected petty cash name
         Assert.assertTrue("Actual Cash Holder name contains expected Cash Holder name", actualCashHolderName.contains(expectedCashHolderName));
         System.out.println("User successfully handled the scenario with valid Cash Holder name data input.");
     }
@@ -106,8 +106,8 @@ public class FIMS_09_TC5_Ridzwan {
         System.out.println("Message displayed: " + noDataMessage.getText());
 
         // Assert to verify if "Tiada Data" message is displayed for invalid data
-        Assert.assertTrue("Tiada Data message displayed for invalid store name data", noDataMessage.isDisplayed());
-        System.out.println("User successfully handled the scenario with invalid store name data input.");
+        Assert.assertTrue("Tiada Data message displayed for invalid petty cash name", noDataMessage.isDisplayed());
+        System.out.println("User successfully handled the scenario with invalid petty cash name name data input.");
     }
 
     @Test
